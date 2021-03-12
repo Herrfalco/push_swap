@@ -1,0 +1,8 @@
+#ifndef CONSTANTS_H
+# define CONSTANTS_H
+
+# define ATOI_ERR_RET -2147483649
+# define INT_MAX_ABS 2147483647
+# define INT_MIN_ABS -2147483648
+
+#endif
