@@ -45,7 +45,6 @@ int pop_from_stack(stack_t *stack) {
 	return (stack->data[stack->length]);
 }
 
-
 /*
 #include <stdio.h>
 void print_stack(stack_t *stack, char *mark) {

@@ -29,4 +29,6 @@ typedef struct stack_s {
 	size_t length;
 } stack_t;
 
+typedef void (*fn)(mem_t**, stack_t*, stack_t*) op_t;
+
 #endif
