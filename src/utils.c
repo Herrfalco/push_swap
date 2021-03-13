@@ -1,7 +1,6 @@
 #include "../includes/includes.h"
 
-long my_atoi(const char *str)
-{
+long my_atoi(const char *str) {
 	long	result = 0;
 	int		sign;
 
@@ -23,6 +22,14 @@ long my_atoi(const char *str)
 	}
 	result *= sign;
 	return (result);
+}
+
+ssize_t str_cmp(const char *s1, const char *s2) {
+	while (*s1 == *s2 && *s1) {
+		++s1;
+		++s2;
+	}
+	return (*s2 - *s1);
 }
 
 /*

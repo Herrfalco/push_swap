@@ -1,53 +1,68 @@
 #include "../includes/includes.h"
 
-void sa(mem_t **mem, stack_t *a, stack_t *b) {
+static void sa(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)b;
 	swap(a);
 }
 
-void sb(mem_t **mem, stack_t *a, stack_t *b) {
+static void sb(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)a;
 	swap(b);
 }
 
-void ss(mem_t **mem, stack_t *a, stack_t *b) {
+static void ss(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
 	swap(a);
 	swap(b);
 }
 
-void pa(mem_t **mem, stack_t *a, stack_t *b) {
+static void pa(mem_t **mem, stack_t *a, stack_t *b) {
 	push(mem, b, a);
 }
 
-void pb(mem_t **mem, stack_t *a, stack_t *b) {
+static void pb(mem_t **mem, stack_t *a, stack_t *b) {
 	push(mem, a, b);
 }
 
-void ra(mem_t **mem, stack_t *a, stack_t *b) {
+static void ra(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)b;
 	rotate(a);
 }
 
-void rb(mem_t **mem, stack_t *a, stack_t *b) {
+static void rb(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)a;
 	rotate(b);
 }
 
-void rr(mem_t **mem, stack_t *a, stack_t *b) {
+static void rr(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
 	rotate(a);
 	rotate(b);
 }
 
-void rra(mem_t **mem, stack_t *a, stack_t *b) {
+static void rra(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)b;
 	rev_rotate(a);
 }
 
-void rrb(mem_t **mem, stack_t *a, stack_t *b) {
+static void rrb(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
+	(void)a;
 	rev_rotate(b);
 }
 
-void rrr(mem_t **mem, stack_t *a, stack_t *b) {
+static void rrr(mem_t **mem, stack_t *a, stack_t *b) {
+	(void)mem;
 	rev_rotate(a);
 	rev_rotate(b);
 }
 
-const char* op_ids[12] = {
+const char* op_ids[] = {
     "sa",
     "sb",
     "ss",
@@ -59,10 +74,9 @@ const char* op_ids[12] = {
     "rra",
     "rrb",
     "rrr",
-    NULL,
 };
 
-const opt_t[11];
+const op_t op_fn[] = {
 	sa,
 	sb,
 	ss,
@@ -75,7 +89,3 @@ const opt_t[11];
 	rrb,
 	rrr,
 };
-
-int main(void) {
-	return (0);
-}

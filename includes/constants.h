@@ -1,8 +1,11 @@
 #ifndef CONSTANTS_H
 # define CONSTANTS_H
 
-# define ATOI_ERR_RET -2147483649
-# define INT_MAX_ABS 2147483647
-# define INT_MIN_ABS -2147483648
+# define ATOI_ERR_RET		-2147483649
+# define INT_MAX_ABS		2147483647
+# define INT_MIN_ABS		-2147483648
+# define READ_BUFFER_SIZE	4096
+# define OP_BUFFER_SIZE		4
+# define OP_NUMBER			11
 
 #endif

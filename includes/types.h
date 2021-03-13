@@ -15,7 +15,12 @@ typedef enum err_e {
 	FREE_ALL_ERR,
 	FREE_PTR_ERR_1,
 	FREE_PTR_ERR_2,
+	DUPLICATES_ERR,
 	ATOI_ERR,
+	READ_ERR,
+	OP_LINE_RET_ERR,
+	OP_TOO_LONG,
+	OP_ID_ERR,
 } err_t;
 
 typedef struct mem_s {
@@ -29,6 +34,6 @@ typedef struct stack_s {
 	size_t length;
 } stack_t;
 
-typedef void (*fn)(mem_t**, stack_t*, stack_t*) op_t;
+typedef void (*op_t)(mem_t**, stack_t*, stack_t*);
 
 #endif

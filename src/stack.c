@@ -9,15 +9,22 @@ stack_t *stack_new(mem_t **mem) {
 	return (stack);
 }
 
+#include <stdio.h>
 stack_t *stack_from_args(mem_t **mem, int argc, char **argv) {
 	int		i;
 	long	val;
 	stack_t *stack = stack_new(mem);
+	size_t	j;
 
 	--argc;
 	for (i = argc; i > 0; --i) {
 		if ((val = my_atoi(argv[i])) == ATOI_ERR_RET)
 			error_exit(mem, ATOI_ERR);
+		for (j = 0; j < stack->length; ++j) {
+			if (stack->data[j] == (int)val) {
+				error_exit(mem, DUPLICATES_ERR);
+			}
+		}
 		push_to_stack(mem, stack, (int)val);
 	}
 	return (stack);
@@ -43,6 +50,18 @@ void push_to_stack(mem_t **mem, stack_t *stack, int val) {
 int pop_from_stack(stack_t *stack) {
 	--stack->length;
 	return (stack->data[stack->length]);
+}
+
+bool_t stack_is_sorted(stack_t *stack) {
+	size_t i;
+
+	if (stack->length < 2)
+		return (TRUE);
+	for (i = 0; i < stack->length - 1; ++i) {
+		if (stack->data[i] < stack->data[i + 1])
+			return (FALSE);
+	}
+	return (TRUE);
 }
 
 /*
