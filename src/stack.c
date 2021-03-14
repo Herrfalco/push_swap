@@ -46,9 +46,17 @@ void push_to_stack(mem_t **mem, stack_t *stack, int val) {
 	stack->data[stack->length++] = val;
 }
 
-int pop_from_stack(stack_t *stack) {
+int pop_from_stack(mem_t **mem, stack_t *stack) {
+	if (!stack->length)
+		error_exit(mem, EMPTY_STACK);
 	--stack->length;
 	return (stack->data[stack->length]);
+}
+
+int top_of_stack(mem_t **mem, stack_t *stack) {
+	if (!stack->length)
+		error_exit(mem, EMPTY_STACK);
+	return (stack->data[stack->length - 1]);
 }
 
 void stack_free(mem_t **mem, stack_t **stack) {
@@ -70,52 +78,3 @@ size_t stack_entropy(stack_t *stack) {
 	}
 	return (entropy);
 }
-
-/*
-#include <stdio.h>
-void print_stack(stack_t *stack, char *mark) {
-	size_t i;
-
-	printf("--------%s---------\n", mark);
-	printf("capacity:%ld\nlength:%ld\n", stack->capacity, stack->length);
-	for (i = 0; i < stack->length; ++i)
-		printf("%d\n", stack->data[i]);
-	printf("--------top---------\n");
-}
-
-int main(int argc, char **argv) {
-	mem_t *mem = mem_new();
-	stack_t *a = stack_from_args(&mem, argc, argv);
-	stack_t *b = stack_new(&mem);;
-
-	print_stack(a, "A");
-	print_stack(b, "B");
-	swap(a);
-	swap(b);
-	print_stack(a, "A");
-	print_stack(b, "B");
-	push(&mem, a, b);
-	push(&mem, a, b);
-	push(&mem, a, b);
-	print_stack(a, "A");
-	print_stack(b, "B");
-	rotate(a);
-	rotate(b);
-	print_stack(a, "A");
-	print_stack(b, "B");
-	rev_rotate(a);
-	rev_rotate(b);
-	print_stack(a, "A");
-	print_stack(b, "B");
-	push(&mem, b, a);
-	print_stack(a, "A");
-	print_stack(b, "B");
-	rev_rotate(a);
-	rev_rotate(b);
-	print_stack(a, "A");
-	print_stack(b, "B");
-
-	mem_free_all(&mem, TRUE);
-	return (0);
-}
-*/

@@ -22,6 +22,7 @@ typedef enum err_e {
 	OP_TOO_LONG,
 	OP_STR_ERR,
 	OP_ID_ERR,
+	EMPTY_STACK,
 } err_t;
 
 typedef enum op_e {
@@ -53,6 +54,7 @@ typedef struct glob_s {
 	mem_t		*mem;
 	char		*op_str[OP_NUMBER];
 	void		(*op_fn[OP_NUMBER])(struct glob_s*);
+	void		(*op_rev[OP_NUMBER])(struct glob_s*);
 	stack_t		*a;
 	stack_t		*b;
 } glob_t;

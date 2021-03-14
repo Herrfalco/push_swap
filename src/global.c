@@ -12,6 +12,11 @@ void	glob_init(glob_t *glob, int argc, char **argv) {
 		ra,	rb,	rr,	rra, rrb,
 		rrr,
 	};
+	op_fn_t init_op_rev[] = {
+		sa, sb, ss, pb, pa,
+		rra, rrb, rrr, ra, rb,
+		rr,
+	};
 	size_t	i;
 
 	for (i = 0; i < OP_NUMBER; ++i) {
@@ -19,6 +24,9 @@ void	glob_init(glob_t *glob, int argc, char **argv) {
 	}
 	for (i = 0; i < OP_NUMBER; ++i) {
 		glob->op_fn[i] = init_op_fn[i];
+	}
+	for (i = 0; i < OP_NUMBER; ++i) {
+		glob->op_rev[i] = init_op_rev[i];
 	}
 	glob->a = stack_from_args(&glob->mem, argc, argv);
 	glob->b = stack_new(&glob->mem);

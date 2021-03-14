@@ -7,5 +7,6 @@
 # define READ_BUFFER_SIZE	4096
 # define OP_BUFFER_SIZE		4
 # define OP_NUMBER			11
+# define MAX_RECURSION		100
 
 #endif

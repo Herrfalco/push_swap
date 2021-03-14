@@ -13,7 +13,7 @@ void swap(stack_t *stack) {
 void push(mem_t **mem, stack_t *s1, stack_t *s2) {
 	if (s1->length < 1)
 		return ;
-	push_to_stack(mem, s2, pop_from_stack(s1));
+	push_to_stack(mem, s2, pop_from_stack(mem, s1));
 }
 
 void rotate(stack_t *stack) {

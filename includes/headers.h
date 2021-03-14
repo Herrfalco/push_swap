@@ -20,7 +20,8 @@ char	*str_cpy(mem_t **mem, const char *s);
 stack_t *stack_new(mem_t **mem);
 stack_t *stack_from_args(mem_t **mem, int argc, char **argv);
 void push_to_stack(mem_t **mem, stack_t *stack, int val);
-int pop_from_stack(stack_t *stack);
+int pop_from_stack(mem_t **mem, stack_t *stack);
+int top_of_stack(mem_t **mem, stack_t *stack);
 void stack_free(mem_t **mem, stack_t **stack);
 size_t stack_entropy(stack_t *stack);
 
