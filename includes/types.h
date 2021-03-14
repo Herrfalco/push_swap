@@ -25,7 +25,7 @@ typedef enum err_e {
 	EMPTY_STACK,
 } err_t;
 
-typedef enum op_e {
+typedef enum op_enum_e {
 	SA,
 	SB,
 	SS,
@@ -54,7 +54,7 @@ typedef struct glob_s {
 	mem_t		*mem;
 	char		*op_str[OP_NUMBER];
 	bool_t		(*op_fn[OP_NUMBER])(struct glob_s*);
-	bool_t		(*op_rev[OP_NUMBER])(struct glob_s*);
+	op_enum_t	op_rev[OP_NUMBER];
 	stack_t		*a;
 	stack_t		*b;
 } glob_t;

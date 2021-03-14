@@ -54,4 +54,7 @@ bool_t rra(glob_t*);
 bool_t rrb(glob_t*);
 bool_t rrr(glob_t*);
 
+//back_track.c
+void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_rec);
+
 #endif

@@ -12,10 +12,10 @@ void	glob_init(glob_t *glob, int argc, char **argv) {
 		ra,	rb,	rr,	rra, rrb,
 		rrr,
 	};
-	op_fn_t init_op_rev[] = {
-		sa, sb, ss, pb, pa,
-		rra, rrb, rrr, ra, rb,
-		rr,
+	int		init_op_rev[] = {
+		SA, SB, SS, PB, PA,
+		RRA, RRB, RRR, RA, RB,
+		RR,
 	};
 	size_t	i;
 

@@ -7,9 +7,10 @@ SRCS		=	src/err.c \
 				src/stack_ops.c \
 				src/utils.c \
 				src/op_stack.c \
+				src/back_track.c \
 				src/global.c
 MAIN_1		=	src/checker.c
-MAIN_2		=	src/back_track.c
+MAIN_2		=	src/push_swap.c
 OBJS_1		=	$(MAIN_1:.c=.o) $(SRCS:.c=.o)
 OBJS_2		=	$(MAIN_2:.c=.o) $(SRCS:.c=.o)
 CC			=	gcc

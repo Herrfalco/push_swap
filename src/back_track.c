@@ -1,5 +1,6 @@
 #include "../includes/includes.h"
 
+/*
 ///////////
 #include <stdio.h>
 void print_stacks(glob_t *glob) {
@@ -19,6 +20,7 @@ void print_stacks(glob_t *glob) {
 	printf("-----\n");
 }
 //////////
+*/
 
 void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_rec) {
 	size_t	i;
@@ -33,8 +35,11 @@ void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_re
 		*result = stack_cpy(&glob->mem, op_stack);
 		return ;
 	}
-	if (op_stack->length < max_rec) {
+	if (op_stack->length <= max_rec) {
 		for (i = 0; i < OP_NUMBER; ++i) {
+			if (op_stack->length && (top_of_stack(&glob->mem, op_stack) == (int)glob->op_rev[i])) {
+				continue ;
+			}
 			push_to_stack(&glob->mem, op_stack, i);
 			back_track(glob, op_stack, result, max_rec);
 			if (*result)
@@ -42,28 +47,5 @@ void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_re
 		}
 	}
 	if (op_stack->length)
-		glob->op_rev[pop_from_stack(&glob->mem, op_stack)](glob);	
-}
-
-int main(int argc, char **argv) {
-	glob_t		glob;
-	stack_t		*op_stack;
-	stack_t		*result = NULL;
-	size_t		max_rec = 0;
-
-	glob_init(&glob, argc, argv);
-	op_stack = stack_new(&glob.mem);
-	while (!result) {
-		if (max_rec >= MAX_RECURSION) {
-			write(1, "too much recursion", 18);
-			break ;
-		}
-		back_track(&glob, op_stack, &result, max_rec++);
-		if (result) {
-			print_op_stack(&glob, result);
-			break ;
-		}
-	}
-	glob_free(&glob);
-	return (0);
+		glob->op_fn[glob->op_rev[pop_from_stack(&glob->mem, op_stack)]](glob);	
 }
