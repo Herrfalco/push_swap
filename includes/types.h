@@ -53,12 +53,12 @@ typedef struct stack_s {
 typedef struct glob_s {
 	mem_t		*mem;
 	char		*op_str[OP_NUMBER];
-	void		(*op_fn[OP_NUMBER])(struct glob_s*);
-	void		(*op_rev[OP_NUMBER])(struct glob_s*);
+	bool_t		(*op_fn[OP_NUMBER])(struct glob_s*);
+	bool_t		(*op_rev[OP_NUMBER])(struct glob_s*);
 	stack_t		*a;
 	stack_t		*b;
 } glob_t;
 
-typedef void (*op_fn_t)(glob_t*);
+typedef bool_t (*op_fn_t)(glob_t*);
 
 #endif

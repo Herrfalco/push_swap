@@ -31,19 +31,6 @@ static void exec_ops(glob_t *glob) {
 	}
 }
 
-/*
-#include <stdio.h>
-void print_stack(stack_t *stack, char *mark) {
-	size_t i;
-
-	printf("--------%s---------\n", mark);
-	printf("capacity:%ld\nlength:%ld\n", stack->capacity, stack->length);
-	for (i = 0; i < stack->length; ++i)
-		printf("%d\n", stack->data[i]);
-	printf("--------top---------\n");
-}
-*/
-
 int main(int argc, char **argv) {
 	glob_t	glob;
 

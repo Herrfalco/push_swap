@@ -19,6 +19,7 @@ char	*str_cpy(mem_t **mem, const char *s);
 //stack.c
 stack_t *stack_new(mem_t **mem);
 stack_t *stack_from_args(mem_t **mem, int argc, char **argv);
+stack_t *stack_cpy(mem_t **mem, stack_t *stack);
 void push_to_stack(mem_t **mem, stack_t *stack, int val);
 int pop_from_stack(mem_t **mem, stack_t *stack);
 int top_of_stack(mem_t **mem, stack_t *stack);
@@ -26,10 +27,10 @@ void stack_free(mem_t **mem, stack_t **stack);
 size_t stack_entropy(stack_t *stack);
 
 //stack_ops.c
-void swap(stack_t *stack);
-void push(mem_t **mem, stack_t *s1, stack_t *s2);
-void rotate(stack_t *stack);
-void rev_rotate(stack_t *stack);
+bool_t swap(stack_t *stack);
+bool_t push(mem_t **mem, stack_t *s1, stack_t *s2);
+bool_t rotate(stack_t *stack);
+bool_t rev_rotate(stack_t *stack);
 
 //global.c
 void glob_init(glob_t *glob, int argc, char **argv);
@@ -41,16 +42,16 @@ void add_to_op_stack(glob_t *glob, stack_t *op_stack, char *id);
 void exec_op_stack(glob_t *glob, stack_t *op_stack);
 
 //ops.c
-void sa(glob_t*);
-void sb(glob_t*);
-void ss(glob_t*);
-void pa(glob_t*);
-void pb(glob_t*);
-void ra(glob_t*);
-void rb(glob_t*);
-void rr(glob_t*);
-void rra(glob_t*);
-void rrb(glob_t*);
-void rrr(glob_t*);
+bool_t sa(glob_t*);
+bool_t sb(glob_t*);
+bool_t ss(glob_t*);
+bool_t pa(glob_t*);
+bool_t pb(glob_t*);
+bool_t ra(glob_t*);
+bool_t rb(glob_t*);
+bool_t rr(glob_t*);
+bool_t rra(glob_t*);
+bool_t rrb(glob_t*);
+bool_t rrr(glob_t*);
 
 #endif

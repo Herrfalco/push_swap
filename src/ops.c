@@ -1,48 +1,46 @@
 #include "../includes/includes.h"
 
-void sa(glob_t* glob) {
-	swap(glob->a);
+bool_t sa(glob_t* glob) {
+	return (swap(glob->a));
 }
 
-void sb(glob_t* glob) {
-	swap(glob->b);
+bool_t sb(glob_t* glob) {
+	return (swap(glob->b));
 }
 
-void ss(glob_t* glob) {
-	swap(glob->a);
-	swap(glob->b);
+bool_t ss(glob_t* glob) {
+	return (swap(glob->a) == TRUE ? TRUE : swap(glob->b));
 }
 
-void pa(glob_t* glob) {
-	push(&glob->mem, glob->b, glob->a);
+bool_t pa(glob_t* glob) {
+	return (push(&glob->mem, glob->b, glob->a));
 }
 
-void pb(glob_t* glob) {
-	push(&glob->mem, glob->a, glob->b);
+bool_t pb(glob_t* glob) {
+	return (push(&glob->mem, glob->a, glob->b));
 }
 
-void ra(glob_t* glob) {
-	rotate(glob->a);
+bool_t ra(glob_t* glob) {
+	return (rotate(glob->a));
 }
 
-void rb(glob_t* glob) {
-	rotate(glob->b);
+bool_t rb(glob_t* glob) {
+	return (rotate(glob->b));
 }
 
-void rr(glob_t* glob) {
-	rotate(glob->a);
-	rotate(glob->b);
+bool_t rr(glob_t* glob) {
+	return (rotate(glob->a) == TRUE ? TRUE : rotate(glob->b));
 }
 
-void rra(glob_t* glob) {
-	rev_rotate(glob->a);
+bool_t rra(glob_t* glob) {
+	return (rev_rotate(glob->a));
 }
 
-void rrb(glob_t* glob) {
-	rev_rotate(glob->b);
+bool_t rrb(glob_t* glob) {
+	return (rev_rotate(glob->b));
 }
 
-void rrr(glob_t* glob) {
-	rev_rotate(glob->a);
-	rev_rotate(glob->b);
+bool_t rrr(glob_t* glob) {
+	return (rev_rotate(glob->a) == TRUE ?
+		TRUE : rev_rotate(glob->b));
 }

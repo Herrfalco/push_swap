@@ -29,6 +29,19 @@ stack_t *stack_from_args(mem_t **mem, int argc, char **argv) {
 	return (stack);
 }
 
+stack_t *stack_cpy(mem_t **mem, stack_t *stack) {
+	stack_t *new_stack = stack_new(mem);
+	size_t	i;
+
+	new_stack->length = stack->length;
+	new_stack->capacity = stack->capacity;
+	new_stack->data = mem_alloc(mem, sizeof(int) * stack->capacity);
+	for (i = 0; i < stack->length; ++i) {
+		new_stack->data[i] = stack->data[i];
+	}
+	return (new_stack);
+}
+
 void push_to_stack(mem_t **mem, stack_t *stack, int val) {
 	int *new_data;
 	size_t i;

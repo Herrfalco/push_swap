@@ -8,10 +8,10 @@ SRCS		=	src/err.c \
 				src/utils.c \
 				src/op_stack.c \
 				src/global.c
-SRC_1		=	src/checker.c
-SRC_2		=	src/back_track.c
-OBJS_1		=	src/checker.o $(SRCS:.c=.o)
-OBJS_2		=	src/back_track.o $(SRCS:.c=.o)
+MAIN_1		=	src/checker.c
+MAIN_2		=	src/back_track.c
+OBJS_1		=	$(MAIN_1:.c=.o) $(SRCS:.c=.o)
+OBJS_2		=	$(MAIN_2:.c=.o) $(SRCS:.c=.o)
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
 #CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer
