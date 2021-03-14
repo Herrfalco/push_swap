@@ -20,8 +20,23 @@ typedef enum err_e {
 	READ_ERR,
 	OP_LINE_RET_ERR,
 	OP_TOO_LONG,
+	OP_STR_ERR,
 	OP_ID_ERR,
 } err_t;
+
+typedef enum op_e {
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR,
+} op_enum_t;
 
 typedef struct mem_s {
 	void *ptr;
@@ -34,6 +49,14 @@ typedef struct stack_s {
 	size_t length;
 } stack_t;
 
-typedef void (*op_t)(mem_t**, stack_t*, stack_t*);
+typedef struct glob_s {
+	mem_t		*mem;
+	char		*op_str[OP_NUMBER];
+	void		(*op_fn[OP_NUMBER])(struct glob_s*);
+	stack_t		*a;
+	stack_t		*b;
+} glob_t;
+
+typedef void (*op_fn_t)(glob_t*);
 
 #endif

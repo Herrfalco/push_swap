@@ -5,10 +5,12 @@ SRCS	=	src/checker.c \
 			src/ops.c \
 			src/stack.c \
 			src/stack_ops.c \
-			src/utils.c
+			src/utils.c \
+			src/global.c
 OBJS	=	$(SRCS:.c=.o)
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
+#CFLAGS	=	-Wall -Wextra -Werror -fsanitize=address -fno-omit-frame-pointer
 RM		=	rm -rf
 
 all		:	$(NAME)

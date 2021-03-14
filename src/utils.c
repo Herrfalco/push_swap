@@ -32,19 +32,20 @@ ssize_t str_cmp(const char *s1, const char *s2) {
 	return (*s2 - *s1);
 }
 
-/*
-#include <stdio.h>
+size_t	str_len(const char *s) {
+	size_t	len = -1;
 
-int main(int argc, char **argv) {
-	int i;
-	long result;
-
-	for (i = 1; i < argc; ++i) {
-		if ((result = ft_atoi(argv[i])) == ATOI_ERR_RET) {
-			error_exit(NULL, ATOI_ERR);
-		}
-		printf("%d\n", (int)result);	
-	}
-	return (0);
+	while (s[++len]);
+	return len;
 }
-*/
+
+char	*str_cpy(mem_t **mem, const char *s) {
+	size_t	i;
+	size_t	s_size = str_len(s) + 1;
+	char	*cpy = mem_alloc(mem, s_size);
+
+	for (i = 0; i < s_size; ++i) {
+		cpy[i] = s[i];
+	}
+	return (cpy);
+}
