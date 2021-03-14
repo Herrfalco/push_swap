@@ -51,6 +51,13 @@ int pop_from_stack(stack_t *stack) {
 	return (stack->data[stack->length]);
 }
 
+void stack_free(mem_t **mem, stack_t **stack) {
+	if ((*stack)->data) {
+		mem_free_ptr(mem, (*stack)->data, FALSE);
+	}
+	mem_free_ptr(mem, *stack, FALSE);
+}
+
 size_t stack_entropy(stack_t *stack) {
 	size_t entropy = 0;
 	size_t i;

@@ -6,6 +6,7 @@ SRCS	=	src/checker.c \
 			src/stack.c \
 			src/stack_ops.c \
 			src/utils.c \
+			src/op_stack.c \
 			src/global.c
 OBJS	=	$(SRCS:.c=.o)
 CC		=	gcc

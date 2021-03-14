@@ -1,17 +1,5 @@
 #include "../includes/includes.h"
 
-static void print_op_stack(glob_t *glob, stack_t *op_stack) {
-	size_t	i;
-	char	*op_str;
-
-	for (i = 0; i < op_stack->length; ++i) {
-		if (op_stack->data[i] < 0 || op_stack->data[i] >= OP_NUMBER)
-			error_exit(&glob->mem, OP_ID_ERR);
-		op_str = glob->op_str[op_stack->data[i]];
-		write(1, op_str, str_len(op_str));
-	}
-}
-
 static void	insert_op_stack(glob_t *glob, stack_t *op_stack, op_enum_t) {
 	push_to
 }
