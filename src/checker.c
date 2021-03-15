@@ -37,7 +37,7 @@ int main(int argc, char **argv) {
 	glob_init(&glob, argc, argv);
 	if (argc > 1) {
 		exec_ops(&glob);
-		write(1, (!stack_entropy(glob.a) && !glob.b->length) ?
+		write(1, (!stack_entropy(glob.a, ASCENDING) && !glob.b->length) ?
 			"OK\n" : "KO\n", 3);
 	}
 	glob_free(&glob);

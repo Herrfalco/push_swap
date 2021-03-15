@@ -8,7 +8,7 @@ SRCS		=	src/err.c \
 				src/utils.c \
 				src/op_stack.c \
 				src/back_track.c \
-				src/comp_sort.c \
+				src/bubble.c \
 				src/global.c \
 				src/debug.c #a supprimer
 MAIN_1		=	src/checker.c

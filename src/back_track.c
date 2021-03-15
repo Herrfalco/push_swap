@@ -9,7 +9,7 @@ void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_re
 			return ;
 		}
 	}
-	if (!stack_entropy(glob->a) && !glob->b->length) {
+	if (!stack_entropy(glob->a, ASCENDING) && !glob->b->length) {
 		*result = stack_cpy(glob->mem, op_stack);
 		return ;
 	}

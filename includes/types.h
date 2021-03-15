@@ -6,6 +6,11 @@ typedef enum boot_e {
 	TRUE,
 } bool_t;
 
+typedef enum order_e {
+	ASCENDING,
+	DESCENDING,
+} order_t;
+
 typedef enum err_e {
 	NO_ERR,
 	MEM_INIT,
@@ -25,6 +30,7 @@ typedef enum err_e {
 	OP_STR_ERR,
 	OP_ID_ERR,
 	EMPTY_STACK,
+	NOT_ENOUGH_ELEM,
 } err_t;
 
 typedef enum op_enum_e {
