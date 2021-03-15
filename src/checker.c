@@ -1,7 +1,7 @@
 #include "../includes/includes.h"
 
 static void exec_ops(glob_t *glob) {
-	stack_t *op_stack = stack_new(&glob->mem);
+	stack_t *op_stack = stack_new(glob->mem);
 	char	buffer_read[READ_BUFFER_SIZE];
 	char	buffer_op[OP_BUFFER_SIZE];
 	ssize_t read_ret = 42;
@@ -10,10 +10,10 @@ static void exec_ops(glob_t *glob) {
 
 	while (read_ret) {
 		if ((read_ret = read(0, buffer_read, READ_BUFFER_SIZE)) < 0)
-			error_exit(&glob->mem, READ_ERR);
+			error_exit(glob->mem, READ_ERR);
 		if (!read_ret) {
 			if (j != 0)
-				error_exit(&glob->mem, OP_LINE_RET_ERR);
+				error_exit(glob->mem, OP_LINE_RET_ERR);
 			exec_op_stack(glob, op_stack);
 			return ;
 		}
@@ -23,7 +23,7 @@ static void exec_ops(glob_t *glob) {
 				add_to_op_stack(glob, op_stack, buffer_op);
 				j = 0;
 			} else if (j > 2) {
-				error_exit(&glob->mem, OP_TOO_LONG);
+				error_exit(glob->mem, OP_TOO_LONG);
 			} else {
 				buffer_op[j++] = buffer_read[i];
 			}

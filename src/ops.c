@@ -13,11 +13,11 @@ bool_t ss(glob_t* glob) {
 }
 
 bool_t pa(glob_t* glob) {
-	return (push(&glob->mem, glob->b, glob->a));
+	return (push(glob->mem, glob->b, glob->a));
 }
 
 bool_t pb(glob_t* glob) {
-	return (push(&glob->mem, glob->a, glob->b));
+	return (push(glob->mem, glob->a, glob->b));
 }
 
 bool_t ra(glob_t* glob) {

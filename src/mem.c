@@ -10,37 +10,38 @@ mem_t *mem_new(void) {
 	return (mem);
 }
 
-static void mem_free(mem_t **mem, mem_t *repl, bool_t destroy) {
-	if ((*mem)->ptr) {
-		free((*mem)->ptr);
-		(*mem)->ptr = NULL;
-	}
-	if (destroy) {
-		free(*mem);
-		*mem = repl;
-	}
+static void mem_free(mem_t **mem, mem_t **mem_2_3) {
+	mem_t *next;
+
+	if (!mem || !mem_2_3 || !*mem_2_3)
+		error_exit(mem, FREE_ERR);
+	next = (*mem_2_3)->next;
+	free((*mem_2_3)->ptr);
+	free(*mem_2_3);
+	*mem_2_3 = next;
 }
 
-static void rec_mem_free_all(mem_t **mem, bool_t destroy) {
-	if ((*mem)->next)
-		mem_free_all(&(*mem)->next, TRUE);
-	mem_free(mem, NULL, destroy);
+static void rec_mem_free_all(mem_t **mem, mem_t **mem_2_3) {
+	if ((*mem_2_3)->next)
+		rec_mem_free_all(mem, &(*mem_2_3)->next);
+	mem_free(mem, mem_2_3);
 }
 
-void mem_free_all(mem_t **mem, bool_t destroy) {
-	if (!mem || !*mem)
+void mem_free_all(mem_t **mem) {
+	if (!mem)
 		error_exit(mem, FREE_ALL_ERR);
-	rec_mem_free_all(mem, destroy);
+	if (*mem)
+		rec_mem_free_all(mem, mem);
 }
 
-void mem_free_ptr(mem_t **mem, void *ptr, bool_t destroy) {
+void mem_free_ptr(mem_t **mem, void *ptr) {
 	mem_t **base = mem;
 
 	if (!mem || !*mem || !ptr)
 		error_exit(base, FREE_PTR_ERR_1);
 	while (*mem) {
 		if ((*mem)->ptr == ptr) {
-			mem_free(mem, (*mem)->next, !(*base)->next ? destroy : TRUE);
+			mem_free(base, mem);
 			return ;
 		}
 		mem = &(*mem)->next;
@@ -51,31 +52,18 @@ void mem_free_ptr(mem_t **mem, void *ptr, bool_t destroy) {
 void *mem_alloc(mem_t **mem, size_t size) {
 	mem_t *new_ptr = NULL;
 
-	if (!mem || !*mem)
+	if (!mem)
 		error_exit(mem, ALLOC_ERR_1);
-	if ((*mem)->ptr) {
-		if (!(new_ptr = mem_new()))
-			error_exit(mem, ALLOC_ERR_2);
-		new_ptr->next = *mem;
-		*mem = new_ptr;
-	}
-	if (!((*mem)->ptr = malloc(size)))
+	if (!(new_ptr = mem_new()))
+		error_exit(mem, ALLOC_ERR_2);
+	if (!(new_ptr->ptr = malloc(size)))
 		error_exit(mem, ALLOC_ERR_3);
-	return ((*mem)->ptr);
+	new_ptr->next = *mem;
+	*mem = new_ptr;
+	return (new_ptr->ptr);
 }
 
 /*
-#include <stdio.h>
-
-void print_mem(mem_t **mem) {
-	printf("---------------------\n");
-	while (*mem) {
-		printf("node:%p\n\tptr:%p\n\tnext:%p\n\n", *mem, (*mem)->ptr, (*mem)->next);
-		mem = &(*mem)->next;
-	}
-	printf("---------------------\n");
-}
-
 void *failoc(size_t size) {
 	static int success_nb = 8;
 

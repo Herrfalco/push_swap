@@ -52,7 +52,7 @@ void push_to_stack(mem_t **mem, stack_t *stack, int val) {
 		if (stack->data) {
 			for (i = 0; i < stack->length; ++i)
 				new_data[i] = stack->data[i];
-			mem_free_ptr(mem, stack->data, FALSE);
+			mem_free_ptr(mem, stack->data);
 		}
 		stack->data = new_data;
 	}
@@ -74,9 +74,10 @@ int top_of_stack(mem_t **mem, stack_t *stack) {
 
 void stack_free(mem_t **mem, stack_t **stack) {
 	if ((*stack)->data) {
-		mem_free_ptr(mem, (*stack)->data, FALSE);
+		mem_free_ptr(mem, (*stack)->data);
 	}
-	mem_free_ptr(mem, *stack, FALSE);
+	mem_free_ptr(mem, *stack);
+	(*stack) = NULL;
 }
 
 size_t stack_entropy(stack_t *stack) {

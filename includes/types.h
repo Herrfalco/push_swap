@@ -12,9 +12,11 @@ typedef enum err_e {
 	ALLOC_ERR_1,
 	ALLOC_ERR_2,
 	ALLOC_ERR_3,
+	FREE_ERR,
 	FREE_ALL_ERR,
 	FREE_PTR_ERR_1,
 	FREE_PTR_ERR_2,
+	FREE_GLOB_CPY,
 	DUPLICATES_ERR,
 	ATOI_ERR,
 	READ_ERR,
@@ -51,7 +53,7 @@ typedef struct stack_s {
 } stack_t;
 
 typedef struct glob_s {
-	mem_t		*mem;
+	mem_t		**mem;
 	char		*op_str[OP_NUMBER];
 	bool_t		(*op_fn[OP_NUMBER])(struct glob_s*);
 	op_enum_t	op_rev[OP_NUMBER];

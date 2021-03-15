@@ -3,12 +3,12 @@
 
 //mem.c
 mem_t *mem_new(void);
-void mem_free_all(mem_t **mem, bool_t destroy);
-void mem_free_ptr(mem_t **mem, void *ptr, bool_t destroy);
+void mem_free_all(mem_t **mem);
+void mem_free_ptr(mem_t **mem, void *ptr);
 void *mem_alloc(mem_t **mem, size_t size);
 
 //error.c
-void error_exit(mem_t **, err_t);
+void error_exit(mem_t **mem, err_t);
 
 //utils.c
 long	my_atoi(const char *str);
@@ -33,8 +33,10 @@ bool_t rotate(stack_t *stack);
 bool_t rev_rotate(stack_t *stack);
 
 //global.c
-void glob_init(glob_t *glob, int argc, char **argv);
-void glob_free(glob_t *glob);
+void	glob_init(glob_t *glob, int argc, char **argv);
+glob_t	*glob_cpy(glob_t *glob);
+void	glob_free_cpy(glob_t **glob);
+void	glob_free(glob_t *glob);
 
 //op_stack.c
 void print_op_stack(glob_t *glob, stack_t *op_stack);
@@ -56,5 +58,12 @@ bool_t rrr(glob_t*);
 
 //back_track.c
 void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_rec);
+//comp_sort.c
+void comp_sort(glob_t *glob, stack_t **result);
+
+//debug.c
+void print_stacks(glob_t *glob);
+void print_mem(mem_t **mem);
+void print_ptr(void *ptr);
 
 #endif

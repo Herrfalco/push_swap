@@ -7,17 +7,19 @@ int main(int argc, char **argv) {
 	size_t		max_rec = 0;
 
 	glob_init(&glob, argc, argv);
-	op_stack = stack_new(&glob.mem);
+	op_stack = stack_new(glob.mem);
 	while (!result) {
-		if (max_rec >= MAX_RECURSION) {
-			write(1, "too much recursion", 18);
+		if (max_rec >= MAX_RECURSION)
 			break ;
-		}
 		back_track(&glob, op_stack, &result, max_rec++);
 		if (result) {
 			print_op_stack(&glob, result);
 			break ;
 		}
+	}
+	if (!result) {
+		write(1, "comp sort\n", 10);
+		comp_sort(&glob, &result);
 	}
 	glob_free(&glob);
 	return (0);

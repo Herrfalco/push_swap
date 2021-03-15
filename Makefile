@@ -8,7 +8,9 @@ SRCS		=	src/err.c \
 				src/utils.c \
 				src/op_stack.c \
 				src/back_track.c \
-				src/global.c
+				src/comp_sort.c \
+				src/global.c \
+				src/debug.c #a supprimer
 MAIN_1		=	src/checker.c
 MAIN_2		=	src/push_swap.c
 OBJS_1		=	$(MAIN_1:.c=.o) $(SRCS:.c=.o)
