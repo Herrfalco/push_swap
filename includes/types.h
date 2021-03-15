@@ -11,26 +11,33 @@ typedef enum order_e {
 	DESCENDING,
 } order_t;
 
+typedef enum stack_pos_e {
+	TOP,
+	SECOND,
+	BOTTOM,
+	NONE,
+} stack_pos_t;
+
 typedef enum err_e {
-	NO_ERR,
-	MEM_INIT,
-	ALLOC_ERR_1,
-	ALLOC_ERR_2,
-	ALLOC_ERR_3,
-	FREE_ERR,
-	FREE_ALL_ERR,
-	FREE_PTR_ERR_1,
-	FREE_PTR_ERR_2,
-	FREE_GLOB_CPY,
-	DUPLICATES_ERR,
-	ATOI_ERR,
-	READ_ERR,
-	OP_LINE_RET_ERR,
-	OP_TOO_LONG,
-	OP_STR_ERR,
-	OP_ID_ERR,
-	EMPTY_STACK,
-	NOT_ENOUGH_ELEM,
+	NO_ERR,				//	0
+	MEM_INIT,			//	1
+	ALLOC_ERR_1,		//	2
+	ALLOC_ERR_2,		//	3
+	ALLOC_ERR_3,		//	4
+	FREE_ERR,			//	5
+	FREE_ALL_ERR,		//	6
+	FREE_PTR_ERR_1,		//	7
+	FREE_PTR_ERR_2,		//	8
+	FREE_GLOB_CPY,		//	9
+	DUPLICATES_ERR,		//	10
+	ATOI_ERR,			//	11
+	READ_ERR,			//	12
+	OP_LINE_RET_ERR,	//	13
+	OP_TOO_LONG,		//	14
+	OP_STR_ERR,			//	15
+	OP_ID_ERR,			//	16
+	EMPTY_STACK,		//	17
+	NOT_ENOUGH_ELEM,	//	18
 } err_t;
 
 typedef enum op_enum_e {
@@ -68,5 +75,10 @@ typedef struct glob_s {
 } glob_t;
 
 typedef bool_t (*op_fn_t)(glob_t*);
+
+typedef struct min_pos_s {
+	stack_pos_t		pos;
+	int				value;
+} min_pos_t;
 
 #endif

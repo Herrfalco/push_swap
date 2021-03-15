@@ -8,8 +8,11 @@ long my_atoi(const char *str) {
 		*str == '\v' || *str == '\f')
 		str++;
 	sign = *str == '-' ? -1 : 1;
-	if (*str == '-' || *str == '+')
+	if (*str == '-' || *str == '+') {
 		str++;
+		if (*str < '0' || *str > '9')
+			return ATOI_ERR_RET;
+	}
 	while (*str)
 	{
 		if (*str < '0' || *str > '9')

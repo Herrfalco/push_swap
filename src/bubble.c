@@ -1,12 +1,5 @@
 #include "../includes/includes.h"
 
-static bool_t	sorted(glob_t *glob) {
-	return (!stack_entropy(glob->a, ASCENDING)
-		&& !stack_entropy(glob->b, DESCENDING)
-		&& (!glob->a->length || !glob->b->length
-			|| top_of_stack(glob->mem, glob->a) > top_of_stack(glob->mem, glob->b)));
-}
-
 void	bubble_sort(glob_t *glob_base, stack_t **result) {
 	glob_t	*glob = glob_cpy(glob_base);
 	stack_t *cur_stack = glob->a;

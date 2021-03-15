@@ -24,8 +24,8 @@ void push_to_stack(mem_t **mem, stack_t *stack, int val);
 int pop_from_stack(mem_t **mem, stack_t *stack);
 int top_of_stack(mem_t **mem, stack_t *stack);
 int sec_of_stack(mem_t **mem, stack_t *stack);
+int bot_of_stack(mem_t **mem, stack_t *stack);
 void stack_free(mem_t **mem, stack_t **stack);
-size_t stack_entropy(stack_t *stack, order_t order);
 
 //stack_ops.c
 bool_t swap(stack_t *stack);
@@ -57,10 +57,16 @@ bool_t rra(glob_t*);
 bool_t rrb(glob_t*);
 bool_t rrr(glob_t*);
 
+//shared.c
+size_t stack_entropy(stack_t *stack, order_t order);
+bool_t	sorted(glob_t *glob);
+
 //back_track.c
-void back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_rec);
+void back_track(glob_t *glob, stack_t **result);
 //bubble.c
 void bubble_sort(glob_t *glob, stack_t **result);
+//insertion.c
+void insertion_sort(glob_t *glob, stack_t **result);
 
 //debug.c
 void print_stacks(glob_t *glob);

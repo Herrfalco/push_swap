@@ -9,7 +9,9 @@ SRCS		=	src/err.c \
 				src/op_stack.c \
 				src/back_track.c \
 				src/bubble.c \
+				src/insertion.c \
 				src/global.c \
+				src/shared.c \
 				src/debug.c #a supprimer
 MAIN_1		=	src/checker.c
 MAIN_2		=	src/push_swap.c

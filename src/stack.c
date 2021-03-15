@@ -78,28 +78,16 @@ int sec_of_stack(mem_t **mem, stack_t *stack) {
 	return (stack->data[stack->length - 2]);
 }
 
+int bot_of_stack(mem_t **mem, stack_t *stack) {
+	if (!stack->length)
+		error_exit(mem, EMPTY_STACK);
+	return (stack->data[0]);
+}
+
 void stack_free(mem_t **mem, stack_t **stack) {
 	if ((*stack)->data) {
 		mem_free_ptr(mem, (*stack)->data);
 	}
 	mem_free_ptr(mem, *stack);
 	(*stack) = NULL;
-}
-
-size_t stack_entropy(stack_t *stack, order_t order) {
-	size_t entropy = 0;
-	size_t i;
-
-	if (stack->length < 2)
-		return (entropy);
-	for (i = 0; i < stack->length - 1; ++i) {
-		if (order == ASCENDING) {
-			if (stack->data[i] < stack->data[i + 1])
-				++entropy;
-		} else {
-			if (stack->data[i] > stack->data[i + 1])
-				++entropy;
-		}
-	}
-	return (entropy);
 }
