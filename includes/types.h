@@ -6,14 +6,14 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 17:49:20 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/16 21:28:07 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
 
-typedef enum	e_boot {
+typedef enum	e_bool {
 	FALSE,
 	TRUE,
 }				t_bool;
@@ -68,7 +68,7 @@ typedef enum	e_op_enum {
 
 typedef struct	s_mem {
 	void			*ptr;
-	struct mem_s	*next;
+	struct s_mem	*next;
 }				t_mem;
 
 typedef struct	s_stack {
@@ -78,18 +78,18 @@ typedef struct	s_stack {
 }				t_stack;
 
 typedef struct	s_glob {
-	mem_t		**mem;
+	t_mem		**mem;
 	char		*op_str[OP_NUMBER];
-	bool_t		(*op_fn[OP_NUMBER])(struct glob_s*);
-	op_enum_t	op_rev[OP_NUMBER];
-	stack_t		*a;
-	stack_t		*b;
+	t_bool		(*op_fn[OP_NUMBER])(struct s_glob*);
+	t_op_enum	op_rev[OP_NUMBER];
+	t_stack		*a;
+	t_stack		*b;
 }				t_glob;
 
-typedef t_bool	(*t_op_fn)(glob_t*);
+typedef t_bool	(*t_op_fn)(t_glob*);
 
 typedef struct	s_min_pos {
-	stack_pos_t		pos;
+	t_stack_pos		pos;
 	int				value;
 }				t_min_pos;
 

@@ -2,16 +2,18 @@ NAME_1		=	checker
 NAME_2		=	push_swap
 SRCS		=	src/err.c \
 				src/mem.c \
-				src/ops.c \
+				src/ops/ops_1.c \
+				src/ops/ops_2.c \
+				src/ops/ops_3.c \
 				src/stack.c \
 				src/stack_ops.c \
 				src/utils.c \
 				src/op_stack.c \
-				src/back_track.c \
-				src/bubble.c \
-				src/insertion.c \
 				src/global.c \
 				src/shared.c \
+				src/sorts/back_track.c \
+				src/sorts/bubble.c \
+				src/sorts/insertion.c \
 				src/debug.c #a supprimer
 MAIN_1		=	src/checker.c
 MAIN_2		=	src/push_swap.c

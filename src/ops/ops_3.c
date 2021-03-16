@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err.c                                              :+:      :+:    :+:   */
+/*   ops_3.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 17:32:59 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 21:26:15 by fcadet           ###   ########.fr       */
+/*   Created: 2021/03/16 17:54:33 by fcadet            #+#    #+#             */
+/*   Updated: 2021/03/16 21:28:53 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes.h"
+#include "../../includes/includes.h"
 
-void error_exit(t_mem **mem, t_err error) {
-	if (mem && *mem)
-		mem_free_all(mem);
-	free(mem);
-	write(2, "Error\n", 6);
-	exit(error);
+t_bool	rrr(t_glob *glob)
+{
+	return (rev_rotate(glob->a) == TRUE ?
+		TRUE : rev_rotate(glob->b));
 }
