@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   back_track.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/16 17:32:52 by fcadet            #+#    #+#             */
+/*   Updated: 2021/03/16 17:32:53 by fcadet           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/includes.h"
 
 static void rec_back_track(glob_t *glob, stack_t *op_stack, stack_t **result, size_t max_rec) {
