@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:58 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 20:38:49 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/16 23:04:31 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 /*
 **#include <stdio.h>
-**void print_stacks(glob_t *glob) {
+**void print_stacks(t_glob *glob) {
 **	size_t	max = glob->a->length > glob->b->length ?
 **		glob->a->length : glob->b->length;
 **	ssize_t	i;
@@ -31,7 +31,7 @@
 **	printf("-----\n");
 **}
 **
-**void print_mem(mem_t **mem) {
+**void print_mem(t_mem **mem) {
 **	printf("---------------------\n");
 **	while (*mem) {
 **		printf("%p\n", (*mem)->ptr);

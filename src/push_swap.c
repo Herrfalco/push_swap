@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:14 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 22:12:49 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/16 22:37:55 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	main(int argc, char **argv)
 		++i;
 	}
 	bubble_sort(&glob, &result[0]);
-	insertion_sort(&glob, &result[1]);
-	back_track(&glob, &result[2]);
+//	insertion_sort(&glob, &result[1]);
+//	back_track(&glob, &result[2]);
 	min = result[0]->length;
 	min_i = 0;
 	i = 1;

@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:36 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 21:36:28 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/16 22:22:52 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	add_to_op_stack(t_glob *glob, t_stack *op_stack, char *id);
 void	exec_op_stack(t_glob *glob, t_stack *op_stack);
 
 /*
-**ops.c
+**ops\*.c
 */
 t_bool	sa(t_glob *glob);
 t_bool	sb(t_glob *glob);
@@ -94,16 +94,10 @@ void	stack_push_exec(t_glob *glob, t_stack *result, t_op_enum op);
 size_t	stack_entropy(t_stack *stack, t_order order);
 
 /*
-**back_track.c
+**sorts\*.c
 */
 void	back_track(t_glob *glob, t_stack **result);
-/*
-**bubble.c
-*/
 void	bubble_sort(t_glob *glob, t_stack **result);
-/*
-**insertion.c
-*/
 void	insertion_sort(t_glob *glob, t_stack **result);
 
 /*
