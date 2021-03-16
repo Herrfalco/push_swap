@@ -11,7 +11,6 @@ int main(int argc, char **argv) {
 	glob_init(&glob, argc, argv);
 	bubble_sort(&glob, &result[0]);
 	insertion_sort(&glob, &result[1]);
-	//a repasser au dessus
 	back_track(&glob, &result[2]);
 	min = result[0]->length;
 	min_i = 0;
