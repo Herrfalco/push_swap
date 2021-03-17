@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:20 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 11:24:22 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 23:15:37 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,8 @@ char			*str_cpy(t_mem **mem, const char *s)
 
 	s_size = str_len(s) + 1;
 	cpy = mem_alloc(mem, s_size);
-	i = 0;
-	while (i < s_size)
-	{
+	i = -1;
+	while (++i < s_size)
 		cpy[i] = s[i];
-		++i;
-	}
 	return (cpy);
 }

@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:14 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 12:33:23 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 23:44:24 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,6 @@ int		main(int argc, char **argv)
 	bubble_sort(&glob, &results[0]);
 	insertion_sort(&glob, &results[1]);
 	back_track(&glob, &results[2]);
-	write(1, "\nbubble:\n", 9);
-	print_op_stack(&glob, results[0]);
-	write(1, "\ninsertion:\n", 12);
-	print_op_stack(&glob, results[1]);
-	write(1, "\nback track:\n", 13);
-	print_op_stack(&glob, results[2]);
-	write(1, "\nbest:\n", 7);
 	print_op_stack(&glob, results[find_best_sort(results)]);
 	glob_free(&glob);
 	return (0);

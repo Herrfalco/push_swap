@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 12:11:45 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 23:44:56 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ size_t	stack_entropy(t_stack *stack, t_order order)
 	entropy = 0;
 	if (stack->length < 2)
 		return (entropy);
-	i = 0;
-	while (i < stack->length - 1)
+	i = -1;
+	while (++i < stack->length - 1)
 	{
 		if (order == ASCENDING)
 		{
@@ -64,7 +64,6 @@ size_t	stack_entropy(t_stack *stack, t_order order)
 			if (stack->data[i] > stack->data[i + 1])
 				++entropy;
 		}
-		++i;
 	}
 	return (entropy);
 }

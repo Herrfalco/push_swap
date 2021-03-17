@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:18 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 11:47:38 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 23:24:53 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,12 @@ t_bool	rotate(t_stack *stack)
 	int	tmp;
 	int	i;
 
-	i = stack->length - 1;
+	i = stack->length;
 	if (stack->length < 2)
 		return (FALSE);
-	tmp = stack->data[i];
-	while (i > 0)
-	{
+	tmp = stack->data[i - 1];
+	while (--i > 0)
 		stack->data[i] = stack->data[i - 1];
-		--i;
-	}
 	stack->data[0] = tmp;
 	return (TRUE);
 }
@@ -58,12 +55,9 @@ t_bool	rev_rotate(t_stack *stack)
 	if (stack->length < 2)
 		return (FALSE);
 	tmp = stack->data[0];
-	i = 0;
-	while (i < stack->length - 1)
-	{
+	i = -1;
+	while (++i < stack->length - 1)
 		stack->data[i] = stack->data[i + 1];
-		++i;
-	}
 	stack->data[i] = tmp;
 	return (TRUE);
 }

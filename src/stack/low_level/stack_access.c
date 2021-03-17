@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:17 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 11:47:55 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 23:19:48 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,9 @@ void	push_to_stack(t_mem **mem, t_stack *stack, int val)
 		new_data = mem_alloc(mem, stack->capacity * sizeof(int));
 		if (stack->data)
 		{
-			i = 0;
-			while (i < stack->length)
-			{
+			i = -1;
+			while (++i < stack->length)
 				new_data[i] = stack->data[i];
-				++i;
-			}
 			mem_free_ptr(mem, stack->data);
 		}
 		stack->data = new_data;
