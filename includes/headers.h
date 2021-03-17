@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:36 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 22:22:52 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:12:54 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	error_exit(t_mem **mem, t_err error);
 /*
 **utils.c
 */
-long	my_atoi(const char *str);
+long	my_atoi(char *str);
 ssize_t	str_cmp(const char *s1, const char *s2);
 size_t	str_len(const char *s);
 char	*str_cpy(t_mem **mem, const char *s);
@@ -91,6 +91,8 @@ t_bool	rrr(t_glob *glob);
 t_bool	sorted(t_glob *glob);
 void	stack_concat(t_glob *glob, t_stack *result);
 void	stack_push_exec(t_glob *glob, t_stack *result, t_op_enum op);
+void	stack_double_push_exec(t_glob *glob, t_stack *result, t_op_enum op_1,
+	t_op_enum op_2);
 size_t	stack_entropy(t_stack *stack, t_order order);
 
 /*

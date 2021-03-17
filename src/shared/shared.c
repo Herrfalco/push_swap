@@ -6,11 +6,11 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 21:16:23 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 12:11:45 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes.h"
+#include "../../includes/includes.h"
 
 t_bool	sorted(t_glob *glob)
 {
@@ -34,6 +34,13 @@ void	stack_push_exec(t_glob *glob, t_stack *result, t_op_enum op)
 {
 	push_to_stack(glob->mem, result, op);
 	glob->op_fn[op](glob);
+}
+
+void	stack_double_push_exec(t_glob *glob, t_stack *result, t_op_enum op_1,
+	t_op_enum op_2)
+{
+	stack_push_exec(glob, result, op_1);
+	stack_push_exec(glob, result, op_2);
 }
 
 size_t	stack_entropy(t_stack *stack, t_order order)

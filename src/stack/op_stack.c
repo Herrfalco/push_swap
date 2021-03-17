@@ -6,17 +6,22 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:12 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 18:04:46 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 12:31:36 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes.h"
+#include "../../includes/includes.h"
 
 void	print_op_stack(t_glob *glob, t_stack *op_stack)
 {
 	size_t	i;
 	char	*op_str;
 
+	if (!op_stack)
+	{
+		write(1, "No solution\n", 12);
+		return ;
+	}
 	i = 0;
 	while (i < op_stack->length)
 	{

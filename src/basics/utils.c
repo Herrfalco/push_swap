@@ -6,21 +6,26 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:20 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 20:33:00 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:24:22 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/includes.h"
+#include "../../includes/includes.h"
 
-long	my_atoi(const char *str)
+static void		skip_white_spaces(char **str)
+{
+	while (**str == ' ' || **str == '\t' || **str == '\n' || **str == '\r' ||
+		**str == '\v' || **str == '\f')
+		(*str)++;
+}
+
+long			my_atoi(char *str)
 {
 	long	result;
 	int		sign;
 
 	result = 0;
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\r' ||
-		*str == '\v' || *str == '\f')
-		str++;
+	skip_white_spaces(&str);
 	sign = *str == '-' ? -1 : 1;
 	if (*str == '-' || *str == '+')
 	{
@@ -42,7 +47,7 @@ long	my_atoi(const char *str)
 	return (result);
 }
 
-ssize_t	str_cmp(const char *s1, const char *s2)
+ssize_t			str_cmp(const char *s1, const char *s2)
 {
 	while (*s1 == *s2 && *s1)
 	{
@@ -52,7 +57,7 @@ ssize_t	str_cmp(const char *s1, const char *s2)
 	return (*s2 - *s1);
 }
 
-size_t	str_len(const char *s)
+size_t			str_len(const char *s)
 {
 	size_t	len;
 
@@ -62,7 +67,7 @@ size_t	str_len(const char *s)
 	return (len);
 }
 
-char	*str_cpy(t_mem **mem, const char *s)
+char			*str_cpy(t_mem **mem, const char *s)
 {
 	size_t	i;
 	size_t	s_size;

@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_2.c                                            :+:      :+:    :+:   */
+/*   ops_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 17:54:07 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 21:28:48 by fcadet           ###   ########.fr       */
+/*   Created: 2021/03/16 17:33:10 by fcadet            #+#    #+#             */
+/*   Updated: 2021/03/17 11:23:36 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/includes.h"
+#include "../../../includes/includes.h"
 
-t_bool	ra(t_glob *glob)
+t_bool	sa(t_glob *glob)
 {
-	return (rotate(glob->a));
+	return (swap(glob->a));
 }
 
-t_bool	rb(t_glob *glob)
+t_bool	sb(t_glob *glob)
 {
-	return (rotate(glob->b));
+	return (swap(glob->b));
 }
 
-t_bool	rr(t_glob *glob)
+t_bool	ss(t_glob *glob)
 {
-	return (rotate(glob->a) == TRUE ? TRUE : rotate(glob->b));
+	return (swap(glob->a) == TRUE ? TRUE : swap(glob->b));
 }
 
-t_bool	rra(t_glob *glob)
+t_bool	pa(t_glob *glob)
 {
-	return (rev_rotate(glob->a));
+	return (push(glob->mem, glob->b, glob->a));
 }
 
-t_bool	rrb(t_glob *glob)
+t_bool	pb(t_glob *glob)
 {
-	return (rev_rotate(glob->b));
+	return (push(glob->mem, glob->a, glob->b));
 }

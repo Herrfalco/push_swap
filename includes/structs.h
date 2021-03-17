@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 22:25:13 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:00:14 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ typedef struct	s_glob {
 	t_stack		*a;
 	t_stack		*b;
 }				t_glob;
-
-typedef struct	s_min_pos {
-	t_stack_pos		pos;
-	int				value;
-}				t_min_pos;
 
 typedef t_bool	(*t_op_fn)(t_glob*);
 

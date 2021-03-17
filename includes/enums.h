@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/16 22:25:27 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/17 11:00:24 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef enum	e_stack_pos {
 	TOP,
 	SECOND,
 	BOTTOM,
-	NONE,
 }				t_stack_pos;
 
 typedef enum	e_err {
