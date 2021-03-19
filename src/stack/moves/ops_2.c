@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_1.c                                            :+:      :+:    :+:   */
+/*   ops_2.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 17:33:10 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:05:54 by fcadet           ###   ########.fr       */
+/*   Created: 2021/03/16 17:54:07 by fcadet            #+#    #+#             */
+/*   Updated: 2021/03/19 14:44:57 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
 
-t_bool	sa(t_glob *glob)
+void	ra(t_glob *glob, t_2_stacks *stacks)
 {
-	return (swap(glob->a));
+	(void)glob;
+	rotate(stacks->a);
 }
 
-t_bool	sb(t_glob *glob)
+void	rb(t_glob *glob, t_2_stacks *stacks)
 {
-	return (swap(glob->b));
+	(void)glob;
+	rotate(stacks->b);
 }
 
-t_bool	ss(t_glob *glob)
+void	rr(t_glob *glob, t_2_stacks *stacks)
 {
-	t_bool	ret_a;
-	t_bool	ret_b;
-
-	ret_a = swap(glob->a);
-	ret_b = swap(glob->b);
-	return (ret_a == FALSE ? ret_b : TRUE);
+	(void)glob;
+	rotate(stacks->a);
+	rotate(stacks->b);
 }
 
-t_bool	pa(t_glob *glob)
+void	rra(t_glob *glob, t_2_stacks *stacks)
 {
-	return (push(glob->mem, glob->b, glob->a));
+	(void)glob;
+	rev_rotate(stacks->a);
 }
 
-t_bool	pb(t_glob *glob)
+void	rrb(t_glob *glob, t_2_stacks *stacks)
 {
-	return (push(glob->mem, glob->a, glob->b));
+	(void)glob;
+	rev_rotate(stacks->b);
 }

@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:31 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:27:46 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/18 10:14:31 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,5 @@
 # define READ_BUFFER_SIZE	4096
 # define OP_BUFFER_SIZE		4
 # define OP_NUMBER			11
-# define MAX_RECURSION		9
-# define RESULTS_NB			3
 
 #endif

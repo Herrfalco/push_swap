@@ -6,41 +6,42 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:44:56 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 16:47:37 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/includes.h"
 
-t_bool	sorted(t_glob *glob)
+t_bool	sorted(t_2_stacks *stacks)
 {
-	return (!stack_entropy(glob->a, ASCENDING)
-		&& !stack_entropy(glob->b, DESCENDING)
-		&& (!glob->a->length || !glob->b->length
-		|| top_of_stack(glob->mem, glob->a)
-		> top_of_stack(glob->mem, glob->b)));
+	return (!stack_entropy(stacks->a, ASCENDING)
+		&& !stack_entropy(stacks->b, DESCENDING)
+		&& (!stacks->a->length || !stacks->b->length
+		|| *((int **)stacks->a->data)[stacks->a->length - 1]
+		> *((int **)stacks->b->data)[stacks->b->length - 1]));
 }
 
-void	stack_concat(t_glob *glob, t_stack *result)
+void	stacks_concat(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 {
-	while (glob->b->length)
+	t_op	*op;
+
+	while (stacks->b->length)
 	{
-		push_to_stack(glob->mem, result, PA);
-		pa(glob);
+		op = mem_alloc(glob->mem, sizeof(t_op));
+		*op = PA;
+		push_to_stack(glob->mem, result, op);
+		pa(glob, stacks);
 	}
 }
 
-void	stack_push_exec(t_glob *glob, t_stack *result, t_op_enum op)
+void	stack_push_exec(t_glob *glob, t_2_stacks *stacks, t_stack *result, t_op op)
 {
-	push_to_stack(glob->mem, result, op);
-	glob->op_fn[op](glob);
-}
+	t_op	*new_op;
 
-void	stack_double_push_exec(t_glob *glob, t_stack *result, t_op_enum op_1,
-	t_op_enum op_2)
-{
-	stack_push_exec(glob, result, op_1);
-	stack_push_exec(glob, result, op_2);
+	new_op = mem_alloc(glob->mem, sizeof(t_op));
+	*new_op = op;
+	push_to_stack(glob->mem, result, new_op);
+	glob->op_fn[op](glob, stacks);
 }
 
 size_t	stack_entropy(t_stack *stack, t_order order)
@@ -56,12 +57,12 @@ size_t	stack_entropy(t_stack *stack, t_order order)
 	{
 		if (order == ASCENDING)
 		{
-			if (stack->data[i] < stack->data[i + 1])
+			if (*((int **)stack->data)[i] < *((int **)stack->data)[i + 1])
 				++entropy;
 		}
 		else
 		{
-			if (stack->data[i] > stack->data[i + 1])
+			if (*((int **)stack->data)[i] > *((int **)stack->data)[i + 1])
 				++entropy;
 		}
 	}

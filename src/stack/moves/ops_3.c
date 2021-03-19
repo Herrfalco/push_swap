@@ -6,18 +6,15 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:54:33 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:04:28 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 14:45:01 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
 
-t_bool	rrr(t_glob *glob)
+void	rrr(t_glob *glob, t_2_stacks *stacks)
 {
-	t_bool	ret_a;
-	t_bool	ret_b;
-
-	ret_a = rev_rotate(glob->a);
-	ret_b = rev_rotate(glob->b);
-	return (ret_a == FALSE ? ret_b : TRUE);
+	(void)glob;
+	rev_rotate(stacks->a);
+	rev_rotate(stacks->b);
 }

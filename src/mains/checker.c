@@ -6,28 +6,28 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:56 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 12:03:47 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 15:59:11 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/includes.h"
 
-static void	exec_ops_end(t_glob *glob, t_stack *op_stack, ssize_t read_ret,
-	size_t j)
+static void	exec_ops_end(t_glob *glob, t_stack *op_stack, ssize_t err, t_2_stacks *stacks)
 {
-	if (read_ret)
+	if (err < 0)
 		error_exit(glob->mem, READ_ERR);
-	if (j != 0)
+	if (err > 0)
 		error_exit(glob->mem, OP_LINE_RET_ERR);
-	exec_op_stack(glob, op_stack);
+	exec_op_stack(glob, op_stack, stacks);
 }
 
-static void	exec_ops(t_glob *glob, t_stack *op_stack, char *buffer_read,
-	char *buffer_op)
+static void	exec_ops(t_glob *glob, t_2_stacks *stacks, t_stack *op_stack)
 {
+	char	buffer_read[READ_BUFFER_SIZE];
+	char	buffer_op[OP_BUFFER_SIZE];
 	ssize_t read_ret;
 	ssize_t	i;
-	size_t	j;
+	ssize_t	j;
 
 	j = 0;
 	while ((read_ret = read(0, buffer_read, READ_BUFFER_SIZE)) > 0)
@@ -38,7 +38,7 @@ static void	exec_ops(t_glob *glob, t_stack *op_stack, char *buffer_read,
 			if (buffer_read[i] == '\n')
 			{
 				buffer_op[j] = '\0';
-				add_to_op_stack(glob, op_stack, buffer_op);
+				push_op_to_stack(glob, op_stack, buffer_op);
 				j = 0;
 			}
 			else if (j > 2)
@@ -47,20 +47,20 @@ static void	exec_ops(t_glob *glob, t_stack *op_stack, char *buffer_read,
 				buffer_op[j++] = buffer_read[i];
 		}
 	}
-	exec_ops_end(glob, op_stack, read_ret, j);
+	exec_ops_end(glob, op_stack, read_ret < 0 ? -1 : j, stacks);
 }
 
 int			main(int argc, char **argv)
 {
-	t_glob	glob;
-	char	buffer_read[READ_BUFFER_SIZE];
-	char	buffer_op[OP_BUFFER_SIZE];
+	t_glob		glob;
+	t_2_stacks	*stacks;
 
-	glob_init(&glob, argc, argv);
+	glob_init(&glob);
+	stacks = stacks_init(glob.mem, argc, argv);
 	if (argc > 1)
 	{
-		exec_ops(&glob, stack_new(glob.mem), buffer_read, buffer_op);
-		write(1, (!stack_entropy(glob.a, ASCENDING) && !glob.b->length) ?
+		exec_ops(&glob, stacks, stack_new(glob.mem, OPERATION));
+		write(1, (!stack_entropy(stacks->a, ASCENDING) && !stacks->b->length) ?
 			"OK\n" : "KO\n", 3);
 	}
 	glob_free(&glob);

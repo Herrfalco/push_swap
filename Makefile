@@ -1,22 +1,20 @@
 NAME_1		=	checker
 NAME_2		=	push_swap
-SRCS		=	src/basics/err.c \
-				src/basics/mem/mem_1.c \
-				src/basics/mem/mem_2.c \
-				src/basics/utils.c \
-				src/stack/ops/ops_1.c \
-				src/stack/ops/ops_2.c \
-				src/stack/ops/ops_3.c \
-				src/stack/ops/stack_moves.c \
-				src/stack/low_level/stack.c \
-				src/stack/low_level/stack_access.c \
-				src/stack/op_stack.c \
+SRCS		=	src/shared/err.c \
 				src/shared/global.c \
+				src/shared/mem/mem_1.c \
+				src/shared/mem/mem_2.c \
 				src/shared/shared.c \
-				src/sorts/back_track.c \
-				src/sorts/bubble.c \
+				src/shared/utils_1.c \
+				src/shared/utils_2.c \
 				src/sorts/insertion.c \
-				src/debug.c #a supprimer
+				src/stack/stack.c \
+				src/stack/moves/ops_1.c \
+				src/stack/moves/ops_2.c \
+				src/stack/moves/ops_3.c \
+				src/stack/moves/stack_moves.c \
+				src/stack/specialized/op_stack.c \
+				src/stack/specialized/stacks.c
 MAIN_1		=	src/mains/checker.c
 MAIN_2		=	src/mains/push_swap.c
 OBJS_1		=	$(MAIN_1:.c=.o) $(SRCS:.c=.o)

@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ops_2.c                                            :+:      :+:    :+:   */
+/*   ops_1.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/16 17:54:07 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:05:11 by fcadet           ###   ########.fr       */
+/*   Created: 2021/03/16 17:33:10 by fcadet            #+#    #+#             */
+/*   Updated: 2021/03/19 14:44:44 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
 
-t_bool	ra(t_glob *glob)
+void	sa(t_glob *glob, t_2_stacks *stacks)
 {
-	return (rotate(glob->a));
+	(void)glob;
+	swap(stacks->a);
 }
 
-t_bool	rb(t_glob *glob)
+void	sb(t_glob *glob, t_2_stacks *stacks)
 {
-	return (rotate(glob->b));
+	(void)glob;
+	swap(stacks->b);
 }
 
-t_bool	rr(t_glob *glob)
+void	ss(t_glob *glob, t_2_stacks *stacks)
 {
-	t_bool	ret_a;
-	t_bool	ret_b;
-
-	ret_a = rotate(glob->a);
-	ret_b = rotate(glob->b);
-	return (ret_a == FALSE ? ret_b : TRUE);
+	(void)glob;
+	swap(stacks->a);
+	swap(stacks->b);
 }
 
-t_bool	rra(t_glob *glob)
+void	pa(t_glob *glob, t_2_stacks *stacks)
 {
-	return (rev_rotate(glob->a));
+	(void)glob;
+	push(glob->mem, stacks->b, stacks->a);
 }
 
-t_bool	rrb(t_glob *glob)
+void	pb(t_glob *glob, t_2_stacks *stacks)
 {
-	return (rev_rotate(glob->b));
+	(void)glob;
+	push(glob->mem, stacks->a, stacks->b);
 }

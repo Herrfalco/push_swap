@@ -6,58 +6,53 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:18 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 23:24:53 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 13:44:34 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
 
-t_bool	swap(t_stack *stack)
+void	swap(t_stack *stack)
 {
-	int tmp;
+	void *tmp;
 
 	if (stack->length < 2)
-		return (FALSE);
+		return ;
 	tmp = stack->data[stack->length - 1];
 	stack->data[stack->length - 1] = stack->data[stack->length - 2];
 	stack->data[stack->length - 2] = tmp;
-	return (TRUE);
 }
 
-t_bool	push(t_mem **mem, t_stack *s1, t_stack *s2)
+void	push(t_mem **mem, t_stack *s1, t_stack *s2)
 {
 	if (s1->length < 1)
-		return (FALSE);
+		return ;
 	push_to_stack(mem, s2, pop_from_stack(mem, s1));
-	return (TRUE);
 }
 
-t_bool	rotate(t_stack *stack)
+void	rotate(t_stack *stack)
 {
-	int	tmp;
-	int	i;
+	void	*tmp;
+	size_t	len;
 
-	i = stack->length;
-	if (stack->length < 2)
-		return (FALSE);
-	tmp = stack->data[i - 1];
-	while (--i > 0)
-		stack->data[i] = stack->data[i - 1];
+	if ((len = stack->length) < 2)
+		return ;
+	tmp = stack->data[len - 1];
+	while (--len > 0)
+		stack->data[len] = stack->data[len - 1];
 	stack->data[0] = tmp;
-	return (TRUE);
 }
 
-t_bool	rev_rotate(t_stack *stack)
+void	rev_rotate(t_stack *stack)
 {
-	int		tmp;
+	void	*tmp;
 	size_t	i;
 
 	if (stack->length < 2)
-		return (FALSE);
+		return ;
 	tmp = stack->data[0];
 	i = -1;
 	while (++i < stack->length - 1)
 		stack->data[i] = stack->data[i + 1];
 	stack->data[i] = tmp;
-	return (TRUE);
 }

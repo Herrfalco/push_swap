@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:08 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/17 11:41:52 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/18 22:16:28 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,22 @@ void		*mem_alloc(t_mem **mem, size_t size)
 **	mem_free_all(&mem, TRUE);
 **
 **	print_mem(&mem);
+**}
+*/
+
+/*
+**void print_mem(t_mem **mem) {
+**	printf("---------------------\n");
+**	while (*mem) {
+**		printf("%p\n", (*mem)->ptr);
+**		mem = &(*mem)->next;
+**	}
+**	printf("---------------------\n");
+**}
+**
+**void print_ptr(void *ptr) {
+**	printf("---------------------\n");
+**	printf("%p\n", ptr);
+**	printf("---------------------\n");
 **}
 */
