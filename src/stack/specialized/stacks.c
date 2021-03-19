@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:12 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 13:45:14 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:33:04 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,4 @@ t_2_stacks		*stacks_init(t_mem **mem, int argc, char **argv)
 	stacks->a = stack_from_args(mem, argc, argv);
 	stacks->b = stack_new(mem, VALUE);
 	return (stacks);
-}
-
-void			stacks_free(t_mem **mem, t_2_stacks **stacks)
-{
-	stack_free(mem, &(*stacks)->a);
-	stack_free(mem, &(*stacks)->b);
-	mem_free_ptr(mem, *stacks);
-	*stacks = NULL;
 }

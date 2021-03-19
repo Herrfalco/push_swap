@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:08 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/18 22:16:28 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:35:50 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,72 +39,3 @@ void		*mem_alloc(t_mem **mem, size_t size)
 	*mem = new_ptr;
 	return (new_ptr->ptr);
 }
-
-/*
-**void *failoc(size_t size) {
-**	static int success_nb = 8;
-**
-**	if (success_nb) {
-**		success_nb--;
-**		return malloc(size);
-**	}
-**	return NULL;
-**}
-**
-**int main(void) {
-**	t_mem *mem = mem_new();
-**
-**	if (!mem) {
-**		error_exit(NULL, MEM_INIT);
-**	}
-**
-**	void *p1 = mem_alloc(&mem, 10);
-**	void *p2 = mem_alloc(&mem, 10);
-**	void *p3 = mem_alloc(&mem, 10);
-**	void *p4 = mem_alloc(&mem, 10);
-**
-**	print_mem(&mem);
-**
-**	mem_free_ptr(&mem, p1, TRUE);
-**	mem_free_ptr(&mem, p3, FALSE);
-**	mem_free_ptr(&mem, p2, TRUE);
-**	mem_free_ptr(&mem, p4, FALSE);
-**
-**	print_mem(&mem);
-**
-**	p1 = mem_alloc(&mem, 10);
-**	p2 = mem_alloc(&mem, 10);
-**	p3 = mem_alloc(&mem, 10);
-**	p4 = mem_alloc(&mem, 10);
-**
-**	mem_free_all(&mem, FALSE);
-**
-**	print_mem(&mem);
-**
-**	p1 = mem_alloc(&mem, 10);
-**	p2 = mem_alloc(&mem, 10);
-**	p3 = mem_alloc(&mem, 10);
-**	p4 = mem_alloc(&mem, 10);
-**
-**	mem_free_all(&mem, TRUE);
-**
-**	print_mem(&mem);
-**}
-*/
-
-/*
-**void print_mem(t_mem **mem) {
-**	printf("---------------------\n");
-**	while (*mem) {
-**		printf("%p\n", (*mem)->ptr);
-**		mem = &(*mem)->next;
-**	}
-**	printf("---------------------\n");
-**}
-**
-**void print_ptr(void *ptr) {
-**	printf("---------------------\n");
-**	printf("%p\n", ptr);
-**	printf("---------------------\n");
-**}
-*/

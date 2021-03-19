@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:17 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:27:00 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 23:15:19 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,21 +53,6 @@ void	*pop_from_stack(t_mem **mem, t_stack *stack)
 	return (stack->data[stack->length]);
 }
 
-void	stack_free(t_mem **mem, t_stack **stack)
-{
-	size_t		i;
-
-	if ((*stack)->data)
-	{
-		i = -1;
-		while (++i < (*stack)->length)
-			mem_free_ptr(mem, (*stack)->data[i]);
-		mem_free_ptr(mem, (*stack)->data);
-	}
-	mem_free_ptr(mem, *stack);
-	(*stack) = NULL;
-}
-
 void	display_stack(t_glob *glob, t_stack *stack)
 {
 	ssize_t	i;
@@ -88,7 +73,7 @@ void	display_stack(t_glob *glob, t_stack *stack)
 		{
 			str = my_itoa(glob, *((int **)stack->data)[i]);
 			write(1, str, str_len(str));
-			write(1, i + 1 < stack->length ? " " : "\n", 1);
+			write(1, " ", 1);
 			mem_free_ptr(glob->mem, str);
 		}
 	}

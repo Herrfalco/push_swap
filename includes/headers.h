@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:18:00 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:34:55 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ char		*my_itoa(t_glob *glob, int n);
 t_stack		*stack_new(t_mem **mem, t_type type);
 void		push_to_stack(t_mem **mem, t_stack *stack, void *val);
 void		*pop_from_stack(t_mem **mem, t_stack *stack);
-void		stack_free(t_mem **mem, t_stack **stack);
 void		display_stack(t_glob *glob, t_stack *stack);
 
 /*
@@ -50,7 +49,6 @@ void		display_stack(t_glob *glob, t_stack *stack);
 void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str);
 void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks);
 t_2_stacks	*stacks_init(t_mem **mem, int argc, char **argv);
-void		stacks_free(t_mem **mem, t_2_stacks **stacks);
 
 /*
 ** Operations implementation
