@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 16:47:37 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:28:09 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ void	stacks_concat(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 	}
 }
 
-void	stack_push_exec(t_glob *glob, t_2_stacks *stacks, t_stack *result, t_op op)
+void	stack_push_exec(t_glob *glob, t_2_stacks *stacks,
+	t_stack *result, t_op op)
 {
 	t_op	*new_op;
 

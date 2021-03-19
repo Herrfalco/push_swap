@@ -6,13 +6,13 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:12 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 15:57:59 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:23:55 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
 
-void			push_op_to_stack(t_glob *glob, t_stack *stack, char *str)
+void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str)
 {
 	size_t	i;
 	t_op	*val;
@@ -31,7 +31,7 @@ void			push_op_to_stack(t_glob *glob, t_stack *stack, char *str)
 	error_exit(glob->mem, OP_STR_ERR);
 }
 
-void			exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks)
+void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks)
 {
 	size_t i;
 

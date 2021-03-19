@@ -6,13 +6,14 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:56 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 15:59:11 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 22:27:55 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/includes.h"
 
-static void	exec_ops_end(t_glob *glob, t_stack *op_stack, ssize_t err, t_2_stacks *stacks)
+static void	exec_ops_end(t_glob *glob, t_stack *op_stack,
+	ssize_t err, t_2_stacks *stacks)
 {
 	if (err < 0)
 		error_exit(glob->mem, READ_ERR);
