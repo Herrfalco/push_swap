@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:12 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 14:53:19 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 20:58:15 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void		print_stacks(t_glob *glob, t_2_stacks *stacks)
 	display_stack(glob, stacks->a);
 	write(1, "\nB: ", 4);
 	display_stack(glob, stacks->b);
-	write(1, "\n-----\n", 7);
+	write(1, "\n", 1);
 }
 
 void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks)
@@ -46,9 +46,5 @@ void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks)
 
 	i = -1;
 	while (++i < op_stack->length)
-	{
 		glob->op_fn[*((t_op **)op_stack->data)[i]](glob, stacks);
-		if (DISPLAY_STACKS)
-			print_stacks(glob, stacks);
-	}
 }

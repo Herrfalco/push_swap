@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 10:33:33 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 21:17:22 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,12 @@ typedef enum	e_op {
 	RRB,
 	RRR,
 }				t_op;
+
+typedef enum	e_rot_comb {
+	RA_RB_RR,
+	RRA_RRB_RRR,
+	RA_RRB,
+	RRA_RB,
+}				t_rot_comb;
 
 #endif

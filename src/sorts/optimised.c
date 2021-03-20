@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 15:25:18 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 22:07:36 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,47 +44,116 @@ static t_op			*new_op(t_glob *glob, t_op op)
 	return (new_op);
 }
 
-static t_stack		*get_op_stack(t_glob *glob, size_t ra_nb, size_t rb_nb, size_t rr_nb)
+static t_stack		*get_op_stack(t_glob *glob, t_rots *rots)
 {
 	ssize_t		i;
 	t_stack		*op_stack;
 
 	op_stack = stack_new(glob->mem, OPERATION);
 	i = -1;
-	while (++i < (ssize_t)ra_nb)
+	while (++i < (ssize_t)rots->ra)
 		push_to_stack(glob->mem, op_stack, new_op(glob, RA));
 	i = -1;
-	while (++i < (ssize_t)rb_nb)
+	while (++i < (ssize_t)rots->rb)
 		push_to_stack(glob->mem, op_stack, new_op(glob, RB));
 	i = -1;
-	while (++i < (ssize_t)rr_nb)
+	while (++i < (ssize_t)rots->rr)
 		push_to_stack(glob->mem, op_stack, new_op(glob, RR));
+	i = -1;
+	while (++i < (ssize_t)rots->rra)
+		push_to_stack(glob->mem, op_stack, new_op(glob, RRA));
+	i = -1;
+	while (++i < (ssize_t)rots->rrb)
+		push_to_stack(glob->mem, op_stack, new_op(glob, RRB));
+	i = -1;
+	while (++i < (ssize_t)rots->rrr)
+		push_to_stack(glob->mem, op_stack, new_op(glob, RRR));
 	push_to_stack(glob->mem, op_stack, new_op(glob, PB));
 	return (op_stack);
 }
 
+static void			set_r_rots(t_rots *rots, size_t ra, size_t rb, size_t rr)
+{
+	rots->ra = ra;	
+	rots->rb = rb;	
+	rots->rr = rr;	
+}
+
+static void			set_rr_rots(t_rots *rots, size_t rra, size_t rrb, size_t rrr)
+{
+	rots->rra = rra;	
+	rots->rrb = rrb;	
+	rots->rrr = rrr;	
+}
+
+static void			get_move_nb(t_rots *rots, t_rot_comb *move_nb)
+{
+	move_nb[RA_RB_RR] = rots->ra < rots->rb ? rots->rb : rots->ra;
+	move_nb[RRA_RRB_RRR] = rots->rra < rots->rrb ? rots->rrb : rots->rra;
+	move_nb[RA_RRB] = rots->ra + rots->rrb;
+	move_nb[RRA_RB] = rots->rra + rots->rb;
+}
+
 static t_stack		*get_moves(t_glob *glob, t_2_stacks *stacks, size_t idx)
 {
-	size_t		ra_nb;
-	size_t		rb_nb;
-	size_t		rr_nb;
+	t_rots		rots;
+	size_t		place;
+	t_rot_comb	move_nb[4];
+	ssize_t		i;
+	size_t		moves;
 
-	ra_nb = idx * -1 + (stacks->a->length - 1);
-	rb_nb = find_max_before(glob, stacks->b, *((int **)stacks->a->data)[idx])
-		* -1 + (stacks->b->length - 1);
-	if (ra_nb < rb_nb)
+	place = find_max_before(glob, stacks->b, *((int **)stacks->a->data)[idx]);
+	set_r_rots(&rots, -idx + (stacks->a->length - 1), -place + (stacks->b->length - 1), 0);
+	set_rr_rots(&rots, idx + 1, place + 1, 0);
+	get_move_nb(&rots, move_nb);
+
+	moves = move_nb[RA_RB_RR];
+	i = 0;
+	while (++i < 4)
+		if (move_nb[i] < moves)
+			moves = i;
+	if (moves == RA_RB_RR)
 	{
-		rr_nb = ra_nb;
-		rb_nb -= ra_nb;
-		ra_nb = 0;
+		if (rots.ra < rots.rb)
+		{
+			moves = rots.ra;
+			set_rr_rots(&rots, 0, 0, 0);
+			set_r_rots(&rots, 0, rots.rb - moves, moves);
+		}
+		else
+		{
+			moves = rots.rb;
+			set_rr_rots(&rots, 0, 0, 0);
+			set_r_rots(&rots, rots.ra - moves, 0, moves);
+		}
+	}
+	else if (moves == RRA_RRB_RRR)
+	{
+		if (rots.rra < rots.rrb)
+		{
+			moves = rots.rb;
+			moves = rots.rra;
+			set_r_rots(&rots, 0, 0, 0);
+			set_rr_rots(&rots, 0, rots.rrb - moves, moves);
+		}
+		else
+		{
+			moves = rots.rrb;
+			set_r_rots(&rots, 0, 0, 0);
+			set_rr_rots(&rots, rots.rra - moves, 0, moves);
+		}
+	}
+	else if (moves == RA_RRB)
+	{
+		set_r_rots(&rots, rots.ra, 0, 0);
+		set_rr_rots(&rots, 0, rots.rrb, 0);
 	}
 	else
 	{
-		rr_nb = rb_nb;
-		ra_nb -= rb_nb;
-		rb_nb = 0;
+		set_r_rots(&rots, 0, rots.rb, 0);
+		set_rr_rots(&rots, rots.rra, 0, 0);
 	}
-	return (get_op_stack(glob, ra_nb, rb_nb, rr_nb));
+	return (get_op_stack(glob, &rots));
 }
 
 static t_stack		*best_moves(t_glob *glob, t_2_stacks *stacks)
@@ -154,11 +223,6 @@ t_stack				*optimised_sort(t_glob *glob, t_2_stacks *stacks)
 	if (stacks->a->length < 2)
 		return (result);
 	stack_push_exec(glob, stacks, result, PB);
-	if (DISPLAY_STACKS)
-	{
-		write(1, "-----\n", 6);
-		print_stacks(glob, stacks);
-	}
 	while (stacks->a->length)
 	{
 		new_moves = best_moves(glob, stacks);	
