@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 22:07:36 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 23:29:12 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,18 +101,25 @@ static t_stack		*get_moves(t_glob *glob, t_2_stacks *stacks, size_t idx)
 	t_rot_comb	move_nb[4];
 	ssize_t		i;
 	size_t		moves;
+	t_rot_comb	best_moves;
 
 	place = find_max_before(glob, stacks->b, *((int **)stacks->a->data)[idx]);
 	set_r_rots(&rots, -idx + (stacks->a->length - 1), -place + (stacks->b->length - 1), 0);
 	set_rr_rots(&rots, idx + 1, place + 1, 0);
 	get_move_nb(&rots, move_nb);
 
-	moves = move_nb[RA_RB_RR];
+	best_moves = RA_RB_RR;
+	moves = move_nb[best_moves];
 	i = 0;
 	while (++i < 4)
+	{
 		if (move_nb[i] < moves)
-			moves = i;
-	if (moves == RA_RB_RR)
+		{
+			best_moves = i;
+			moves = move_nb[best_moves];
+		}
+	}
+	if (best_moves == RA_RB_RR)
 	{
 		if (rots.ra < rots.rb)
 		{
@@ -127,7 +134,7 @@ static t_stack		*get_moves(t_glob *glob, t_2_stacks *stacks, size_t idx)
 			set_r_rots(&rots, rots.ra - moves, 0, moves);
 		}
 	}
-	else if (moves == RRA_RRB_RRR)
+	else if (best_moves == RRA_RRB_RRR)
 	{
 		if (rots.rra < rots.rrb)
 		{
@@ -143,7 +150,7 @@ static t_stack		*get_moves(t_glob *glob, t_2_stacks *stacks, size_t idx)
 			set_rr_rots(&rots, rots.rra - moves, 0, moves);
 		}
 	}
-	else if (moves == RA_RRB)
+	else if (best_moves == RA_RRB)
 	{
 		set_r_rots(&rots, rots.ra, 0, 0);
 		set_rr_rots(&rots, 0, rots.rrb, 0);
