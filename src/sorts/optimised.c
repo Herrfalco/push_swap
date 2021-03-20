@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 23:29:12 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 23:39:31 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ static t_stack		*get_moves(t_glob *glob, t_2_stacks *stacks, size_t idx)
 	{
 		if (rots.rra < rots.rrb)
 		{
-			moves = rots.rb;
 			moves = rots.rra;
 			set_r_rots(&rots, 0, 0, 0);
 			set_rr_rots(&rots, 0, rots.rrb - moves, moves);
