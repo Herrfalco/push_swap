@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:34:55 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 14:49:57 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ char		*my_itoa(t_glob *glob, int n);
 ** Stack
 */
 t_stack		*stack_new(t_mem **mem, t_type type);
+void		stack_free(t_mem **mem, t_stack **stack);
 void		push_to_stack(t_mem **mem, t_stack *stack, void *val);
 void		*pop_from_stack(t_mem **mem, t_stack *stack);
 void		display_stack(t_glob *glob, t_stack *stack);
@@ -48,6 +49,7 @@ void		display_stack(t_glob *glob, t_stack *stack);
 */
 void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str);
 void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks);
+void		print_stacks(t_glob *glob, t_2_stacks *stacks);
 t_2_stacks	*stacks_init(t_mem **mem, int argc, char **argv);
 
 /*
@@ -89,6 +91,7 @@ size_t		stack_entropy(t_stack *stack, t_order order);
 /*
 ** Sorts
 */
-t_stack		*insertion_sort(t_glob *glob, t_2_stacks *stacks);
+t_stack		*custom_sort(t_glob *glob, t_2_stacks *stacks);
+t_stack		*optimised_sort(t_glob *glob, t_2_stacks *stacks);
 
 #endif

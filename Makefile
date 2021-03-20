@@ -7,7 +7,8 @@ SRCS		=	src/shared/err.c \
 				src/shared/shared.c \
 				src/shared/utils_1.c \
 				src/shared/utils_2.c \
-				src/sorts/insertion.c \
+				src/sorts/custom.c \
+				src/sorts/optimised.c \
 				src/stack/stack.c \
 				src/stack/moves/ops_1.c \
 				src/stack/moves/ops_2.c \

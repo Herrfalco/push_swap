@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:17 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 23:15:19 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/20 13:50:50 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,21 @@ t_stack	*stack_new(t_mem **mem, t_type type)
 	stack->data = NULL;
 	stack->type = type;
 	return (stack);
+}
+
+void	stack_free(t_mem **mem, t_stack **stack)
+{
+	ssize_t		i;
+
+	if ((*stack)->data)
+	{
+		i = -1;
+		while (++i < (ssize_t)(*stack)->length)
+			mem_free_ptr(mem, (*stack)->data[i]);
+		mem_free_ptr(mem, (*stack)->data);
+	}
+	mem_free_ptr(mem, *stack);
+	(*stack) = NULL;
 }
 
 void	push_to_stack(t_mem **mem, t_stack *stack, void *val)

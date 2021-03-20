@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   insertion.c                                        :+:      :+:    :+:   */
+/*   custom.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:23:26 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/19 23:20:14 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	to_end_of_b(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 	stack_push_exec(glob, stacks, result, RB);
 }
 
-t_stack		*insertion_sort(t_glob *glob, t_2_stacks *stacks)
+t_stack		*custom_sort(t_glob *glob, t_2_stacks *stacks)
 {
 	int			min;
 	t_stack		*result;
