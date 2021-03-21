@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 23:26:38 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 00:27:42 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ static t_bool	useless_move(t_glob *glob, t_2_stacks *stacks,
 {
 	t_op	last_op;
 
-	if (!op_stack->length)
-		return (FALSE);
-	last_op = *((t_op **)op_stack->data)[op_stack->length - 1];
-	if (op == glob->op_rev[last_op])
-		return (TRUE);
 	if (stacks->a->length < 2 || stacks->b->length < 2)
 		if (op == RRR || op == RR || op == SS)
 			return (TRUE);
@@ -43,25 +38,20 @@ static t_bool	useless_move(t_glob *glob, t_2_stacks *stacks,
 			return (TRUE);
 	if ((!stacks->a->length && op == PB) || (!stacks->b->length && op == PA))
 		return (TRUE);
+	if (!op_stack->length)
+		return (FALSE);
+	last_op = *((t_op **)op_stack->data)[op_stack->length - 1];
+	if (op == glob->op_rev[last_op])
+		return (TRUE);
 	return (FALSE);
-}
-
-static void		change_best_result(t_glob *glob, t_stack **best_result,
-	t_stack *new_result)
-{
-	if (*best_result)
-		stack_free(glob->mem, best_result);
-	*best_result = new_result;
 }
 
 static t_stack	*rec_backtrack_sort(t_glob *glob, t_2_stacks *stacks,
 	t_stack *op_stack)
 {
 	ssize_t		i;
-	t_stack		*best_result;
-	t_stack		*new_result;
+	t_stack		*result;
 
-	best_result = NULL;
 	if (op_stack->length > MAX_BACKTRACK)
 		return (NULL);
 	if (!stack_entropy(stacks->a) && !stacks->b->length)
@@ -72,16 +62,11 @@ static t_stack	*rec_backtrack_sort(t_glob *glob, t_2_stacks *stacks,
 		if (useless_move(glob, stacks, op_stack, i) == TRUE)
 			continue ;
 		stack_push_exec(glob, stacks, op_stack, i);
-		if ((new_result = rec_backtrack_sort(glob, stacks, op_stack)))
-		{
-			if (!best_result || new_result->length < best_result->length)
-				change_best_result(glob, &best_result, new_result);
-			else if (new_result)
-				stack_free(glob->mem, &new_result);
-		}
+		if ((result = rec_backtrack_sort(glob, stacks, op_stack)))
+			return (result);
 		revert_push_exec(glob, stacks, op_stack);
 	}
-	return (best_result);
+	return (NULL);
 }
 
 t_stack			*backtrack_sort(t_glob *glob, t_2_stacks *stacks)
