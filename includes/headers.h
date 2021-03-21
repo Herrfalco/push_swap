@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 10:00:05 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 21:52:02 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ void		display_stack(t_glob *glob, t_stack *stack);
 /*
 ** Specialized stacks
 */
+t_op		*new_op(t_glob *glob, t_op op);
 void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str);
 void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks);
+t_stack		*copy_op_stack(t_glob *glob, t_stack *op_stack);
 void		print_stacks(t_glob *glob, t_2_stacks *stacks);
 t_2_stacks	*stacks_init(t_mem **mem, int argc, char **argv);
 
@@ -81,7 +83,6 @@ void		glob_free(t_glob *glob);
 /*
 ** Functions shared between sorts
 */
-t_bool		sorted(t_2_stacks *stacks);
 void		stacks_concat(t_glob *glob, t_2_stacks *stacks,
 	t_stack *result);
 void		stack_push_exec(t_glob *glob, t_2_stacks *stacks,
@@ -89,8 +90,27 @@ void		stack_push_exec(t_glob *glob, t_2_stacks *stacks,
 size_t		stack_entropy(t_stack *stack, t_order order);
 
 /*
-** Sorts
+** Optimised sort
 */
 t_stack		*optimised_sort(t_glob *glob, t_2_stacks *stacks);
+void		concat_ops(t_glob *glob, t_stack *ops_1, t_stack *ops_2);
+void		get_max(t_stack *stack, int *max, size_t *max_i);
+t_stack		*rots_to_op_stack(t_glob *glob, t_rots *rots,
+	t_rot_comb best_moves);
+size_t		find_max_before(t_glob *glob, t_stack *stack, int val);
+t_stack		*best_moves(t_glob *glob, t_2_stacks *stacks);
+t_stack		*final_moves(t_glob *glob, t_2_stacks *stacks);
+void		set_r_rots(t_rots *rots, size_t ra, size_t rb, size_t rr);
+void		set_rr_rots(t_rots *rots, size_t rra, size_t rrb, size_t rrr);
+void		set_raw_rots(t_glob *glob, t_2_stacks *stacks, t_rots *rots,
+	size_t idx);
+void		reset_set_r_rots(t_rots *rots, size_t ra, size_t rb, size_t rr);
+void		reset_set_rr_rots(t_rots *rots, size_t rra, size_t rrb,
+	size_t rrr);
+
+/*
+** Backtracking
+*/
+t_stack		*backtrack_sort(t_glob *glob, t_2_stacks *stacks);
 
 #endif

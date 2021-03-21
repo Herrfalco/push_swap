@@ -6,20 +6,11 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:28:09 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 21:05:32 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/includes.h"
-
-t_bool	sorted(t_2_stacks *stacks)
-{
-	return (!stack_entropy(stacks->a, ASCENDING)
-		&& !stack_entropy(stacks->b, DESCENDING)
-		&& (!stacks->a->length || !stacks->b->length
-		|| *((int **)stacks->a->data)[stacks->a->length - 1]
-		> *((int **)stacks->b->data)[stacks->b->length - 1]));
-}
 
 void	stacks_concat(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 {
@@ -27,8 +18,7 @@ void	stacks_concat(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 
 	while (stacks->b->length)
 	{
-		op = mem_alloc(glob->mem, sizeof(t_op));
-		*op = PA;
+		op = new_op(glob, PA);
 		push_to_stack(glob->mem, result, op);
 		pa(glob, stacks);
 	}
@@ -37,11 +27,10 @@ void	stacks_concat(t_glob *glob, t_2_stacks *stacks, t_stack *result)
 void	stack_push_exec(t_glob *glob, t_2_stacks *stacks,
 	t_stack *result, t_op op)
 {
-	t_op	*new_op;
+	t_op	*new_op_val;
 
-	new_op = mem_alloc(glob->mem, sizeof(t_op));
-	*new_op = op;
-	push_to_stack(glob->mem, result, new_op);
+	new_op_val = new_op(glob, op);
+	push_to_stack(glob->mem, result, new_op_val);
 	glob->op_fn[op](glob, stacks);
 }
 

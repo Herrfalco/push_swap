@@ -6,11 +6,20 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:12 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 20:58:15 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 21:55:11 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/includes.h"
+
+t_op			*new_op(t_glob *glob, t_op op)
+{
+	t_op	*new_op;
+
+	new_op = mem_alloc(glob->mem, sizeof(t_op));
+	*new_op = op;
+	return (new_op);
+}
 
 void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str)
 {
@@ -31,6 +40,7 @@ void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str)
 	error_exit(glob->mem, OP_STR_ERR);
 }
 
+//a supprimer
 void		print_stacks(t_glob *glob, t_2_stacks *stacks)
 {
 	write(1, "A: ", 3);
@@ -47,4 +57,17 @@ void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks)
 	i = -1;
 	while (++i < op_stack->length)
 		glob->op_fn[*((t_op **)op_stack->data)[i]](glob, stacks);
+}
+
+t_stack		*copy_op_stack(t_glob *glob, t_stack *op_stack)
+{
+	t_stack		*copy;
+	ssize_t		i;
+
+	copy = stack_new(glob->mem, OPERATION);
+	i = -1;
+	while (++i < (ssize_t)op_stack->length)
+		push_to_stack(glob->mem, copy, new_op(glob,
+			*((int **)op_stack->data)[i]));
+	return (copy);
 }
