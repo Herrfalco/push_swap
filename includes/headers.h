@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 14:49:57 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 10:00:05 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ size_t		stack_entropy(t_stack *stack, t_order order);
 /*
 ** Sorts
 */
-t_stack		*custom_sort(t_glob *glob, t_2_stacks *stacks);
 t_stack		*optimised_sort(t_glob *glob, t_2_stacks *stacks);
 
 #endif

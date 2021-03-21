@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 23:39:31 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 10:09:20 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,8 +202,14 @@ static t_stack		*final_moves(t_glob *glob, t_2_stacks *stacks)
 	}
 	final_moves = stack_new(glob->mem, OPERATION);
 	i = -1;
-	while (++i < max_i * -1 + (stacks->b->length - 1))
-		push_to_stack(glob->mem, final_moves, new_op(glob, RB));
+	if (-max_i + (stacks->b->length - 1) > max_i + 1)
+	{
+		while (++i < max_i + 1)
+			push_to_stack(glob->mem, final_moves, new_op(glob, RRB));
+	}
+	else
+		while (++i < -max_i + (stacks->b->length - 1))
+			push_to_stack(glob->mem, final_moves, new_op(glob, RB));
 	i = -1;
 	while (++i < stacks->b->length)
 		push_to_stack(glob->mem, final_moves, new_op(glob, PA));
