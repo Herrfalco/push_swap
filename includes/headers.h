@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 21:52:02 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:25:51 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		stacks_concat(t_glob *glob, t_2_stacks *stacks,
 	t_stack *result);
 void		stack_push_exec(t_glob *glob, t_2_stacks *stacks,
 	t_stack *result, t_op op);
-size_t		stack_entropy(t_stack *stack, t_order order);
+size_t		stack_entropy(t_stack *stack);
 
 /*
 ** Optimised sort

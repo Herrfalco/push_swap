@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:15 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 21:05:32 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:25:16 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	stack_push_exec(t_glob *glob, t_2_stacks *stacks,
 	glob->op_fn[op](glob, stacks);
 }
 
-size_t	stack_entropy(t_stack *stack, t_order order)
+size_t	stack_entropy(t_stack *stack)
 {
 	size_t	entropy;
 	size_t	i;
@@ -44,17 +44,7 @@ size_t	stack_entropy(t_stack *stack, t_order order)
 		return (entropy);
 	i = -1;
 	while (++i < stack->length - 1)
-	{
-		if (order == ASCENDING)
-		{
-			if (*((int **)stack->data)[i] < *((int **)stack->data)[i + 1])
-				++entropy;
-		}
-		else
-		{
-			if (*((int **)stack->data)[i] > *((int **)stack->data)[i + 1])
-				++entropy;
-		}
-	}
+		if (*((int **)stack->data)[i] < *((int **)stack->data)[i + 1])
+			++entropy;
 	return (entropy);
 }

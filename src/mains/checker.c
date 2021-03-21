@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:56 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 22:27:55 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:27:11 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int			main(int argc, char **argv)
 	if (argc > 1)
 	{
 		exec_ops(&glob, stacks, stack_new(glob.mem, OPERATION));
-		write(1, (!stack_entropy(stacks->a, ASCENDING) && !stacks->b->length) ?
+		write(1, (!stack_entropy(stacks->a) && !stacks->b->length) ?
 			"OK\n" : "KO\n", 3);
 	}
 	glob_free(&glob);

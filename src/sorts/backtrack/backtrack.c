@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:05 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 23:22:59 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:26:38 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_stack	*rec_backtrack_sort(t_glob *glob, t_2_stacks *stacks,
 	best_result = NULL;
 	if (op_stack->length > MAX_BACKTRACK)
 		return (NULL);
-	if (!stack_entropy(stacks->a, ASCENDING) && !stacks->b->length)
+	if (!stack_entropy(stacks->a) && !stacks->b->length)
 		return (copy_op_stack(glob, op_stack));
 	i = -1;
 	while (++i < OP_NUMBER)

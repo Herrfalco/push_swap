@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/20 21:17:22 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/21 23:27:29 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ typedef enum	e_type {
 	VALUE,
 	OPERATION,
 }				t_type;
-
-typedef enum	e_order {
-	ASCENDING,
-	DESCENDING,
-}				t_order;
 
 typedef enum	e_pos {
 	TOP,
