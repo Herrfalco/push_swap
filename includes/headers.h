@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 23:25:51 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:14:29 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_op		*new_op(t_glob *glob, t_op op);
 void		push_op_to_stack(t_glob *glob, t_stack *stack, char *str);
 void		exec_op_stack(t_glob *glob, t_stack *op_stack, t_2_stacks *stacks);
 t_stack		*copy_op_stack(t_glob *glob, t_stack *op_stack);
-void		print_stacks(t_glob *glob, t_2_stacks *stacks);
 t_2_stacks	*stacks_init(t_mem **mem, int argc, char **argv);
 
 /*

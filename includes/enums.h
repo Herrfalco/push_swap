@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:32:44 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/21 23:27:29 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:07:35 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,8 @@ typedef enum	e_type {
 	OPERATION,
 }				t_type;
 
-typedef enum	e_pos {
-	TOP,
-	SECOND,
-	BOTTOM,
-}				t_pos;
-
 typedef enum	e_err {
 	NO_ERR,
-	MEM_INIT,
 	ALLOC_ERR_1,
 	ALLOC_ERR_2,
 	ALLOC_ERR_3,
@@ -46,8 +39,6 @@ typedef enum	e_err {
 	OP_TOO_LONG,
 	OP_STR_ERR,
 	EMPTY_STACK_ERR,
-	OUT_OF_STACK_ERR,
-	NOT_ENOUGH_ELEM,
 }				t_err;
 
 typedef enum	e_op {

@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:20 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/19 13:46:26 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:01:07 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ long			my_atoi(char *str)
 			return (ATOI_ERR_RET);
 		result *= 10;
 		result += *str - '0';
-		if ((result * sign > INT_MAX_ABS) || (result * sign < INT_MIN_ABS))
+		if ((result * sign > MAX_INT) || (result * sign < MIN_INT))
 			return (ATOI_ERR_RET);
 		str++;
 	}
