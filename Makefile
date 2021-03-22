@@ -5,6 +5,7 @@ SRCS		=	src/sorts/backtrack/backtrack.c \
 				src/sorts/optimised/utils/optimised_utils_1.c \
 				src/sorts/optimised/utils/optimised_utils_2.c \
 				src/sorts/optimised/utils/optimised_utils_3.c \
+				src/sorts/small/small.c \
 				src/stack/moves/stack_moves.c \
 				src/stack/moves/ops_1.c \
 				src/stack/moves/ops_2.c \

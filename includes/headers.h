@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 21:56:45 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/22 10:14:29 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:42:12 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ void		reset_set_rr_rots(t_rots *rots, size_t rra, size_t rrb,
 ** Backtracking
 */
 t_stack		*backtrack_sort(t_glob *glob, t_2_stacks *stacks);
+
+/*
+** Small
+*/
+t_stack		*small_sort(t_glob *glob, t_2_stacks *stacks);
 
 #endif

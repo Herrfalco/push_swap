@@ -6,7 +6,7 @@
 /*   By: fcadet <fcadet@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/16 17:33:14 by fcadet            #+#    #+#             */
-/*   Updated: 2021/03/22 00:15:14 by fcadet           ###   ########.fr       */
+/*   Updated: 2021/03/22 10:49:56 by fcadet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ int		main(int argc, char **argv)
 	stacks = stacks_init(glob.mem, argc, argv);
 	if (stack_entropy(stacks->a))
 	{
-		if (stacks->a->length > 5)
+		if (stacks->a->length == 3)
+			result = small_sort(&glob, stacks);
+		else if (stacks->a->length > 5)
 			result = optimised_sort(&glob, stacks);
 		else
 			result = backtrack_sort(&glob, stacks);
